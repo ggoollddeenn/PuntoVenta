@@ -63,7 +63,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\ArticuloViewModel.cs" />
+    <Compile Include="ViewModel\CodigoArticuloViewModel.cs" />
+    <Compile Include="ViewModel\ImpuestoArticuloViewModel.cs" />
+    <Compile Include="ViewModel\LineaViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\UnidadMedidaViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
