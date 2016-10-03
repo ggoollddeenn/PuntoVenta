@@ -28,6 +28,7 @@
         <AssociationConnector Association="BD_VENTAModel.FK_SUCURSAL" />
         <AssociationConnector Association="BD_VENTAModel.FK_SUCURSAL_CUENTA" />
         <AssociationConnector Association="BD_VENTAModel.FK_TIPO_CLIENTE_SUCURSAL" />
+        <EntityTypeShape EntityType="BD_VENTAModel.PERFIL" Width="1.5" PointX="10.25" PointY="1.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

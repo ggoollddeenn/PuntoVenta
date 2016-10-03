@@ -93,6 +93,9 @@
     <Compile Include="OFERTA_CLIENTE_SUCURSAL.cs">
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
+    <Compile Include="PERFIL.cs">
+      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SUCURSAL.cs">
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>

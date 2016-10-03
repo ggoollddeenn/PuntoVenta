@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'c:\users\raulb\onedrive\documentos\visual studio 2015\Projects\PuntoVenta\Model\EF_CATALOGOS.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\raulb\onedrive\documentos\visual studio 2015\Projects\PuntoVenta\Model\EF_CATALOGOS.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
