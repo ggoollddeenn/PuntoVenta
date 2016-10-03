@@ -33,5 +33,9 @@ namespace Model
         public virtual DbSet<SUCURSAL> SUCURSAL { get; set; }
         public virtual DbSet<UNIDAD_MEDIDA> UNIDAD_MEDIDA { get; set; }
         public virtual DbSet<VENTA_DETALLE> VENTA_DETALLE { get; set; }
+        public virtual DbSet<ALMACEN> ALMACEN { get; set; }
+        public virtual DbSet<CAJA> CAJA { get; set; }
+        public virtual DbSet<CUENTA> CUENTA { get; set; }
+        public virtual DbSet<OFERTA_CLIENTE_SUCURSAL> OFERTA_CLIENTE_SUCURSAL { get; set; }
     }
 }

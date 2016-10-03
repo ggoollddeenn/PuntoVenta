@@ -51,10 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ALMACEN.cs">
+      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ARTICULO.cs">
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
+    <Compile Include="CAJA.cs">
+      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+    </Compile>
     <Compile Include="CODIGO_ARTICULO.cs">
+      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CUENTA.cs">
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
     <Compile Include="EF_CATALOGOS.Context.cs">
@@ -79,6 +88,9 @@
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
     <Compile Include="LINEA.cs">
+      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OFERTA_CLIENTE_SUCURSAL.cs">
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
