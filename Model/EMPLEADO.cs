@@ -12,22 +12,26 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PERFIL
+    public partial class EMPLEADO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PERFIL()
-        {
-            this.EMPLEADO = new HashSet<EMPLEADO>();
-        }
-    
+        public int ID_EMPLEADO { get; set; }
+        public int ID_CUENTA { get; set; }
         public int ID_PERFIL { get; set; }
-        public string PERFIL1 { get; set; }
+        public string USUARIO { get; set; }
+        public string CONTRASENA { get; set; }
+        public string NOMBRE { get; set; }
+        public string APELLIDO_PATERNO { get; set; }
+        public string APELLIDO_MATERNO { get; set; }
+        public string RFC { get; set; }
+        public string TELEFONO_FIJO { get; set; }
+        public string CELULAR { get; set; }
+        public string DIRECCION { get; set; }
         public System.DateTime FECHA_CREACION { get; set; }
         public int ID_USUARIO_CREACION { get; set; }
         public System.DateTime FECHA_ACTUALIZACION { get; set; }
-        public Nullable<int> ID_USUARIO_ACTUALIZACION { get; set; }
+        public int ID_USUARIO_ACTUALIZACION { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }
+        public virtual CUENTA CUENTA { get; set; }
+        public virtual PERFIL PERFIL { get; set; }
     }
 }
