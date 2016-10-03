@@ -4,7 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_VENTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BD_VENTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ALMACEN">
+          <Key>
+            <PropertyRef Name="ID_ALMACEN" />
+          </Key>
+          <Property Name="ID_ALMACEN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="UBICACION" Type="varchar" MaxLength="100" />
+          <Property Name="FECHA_CREACION" Type="datetime" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" />
+        </EntityType>
         <EntityType Name="ARTICULO">
           <Key>
             <PropertyRef Name="ID_ARTICULO" />
@@ -24,6 +37,18 @@
           <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CAJA">
+          <Key>
+            <PropertyRef Name="ID_CAJA" />
+          </Key>
+          <Property Name="ID_CAJA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CODIGO_ARTICULO">
           <Key>
             <PropertyRef Name="ID_CODIGO_ARTICULO" />
@@ -32,6 +57,27 @@
           <Property Name="ID_ARTICULO" Type="int" />
           <Property Name="CODIGO" Type="varchar" MaxLength="50" />
           <Property Name="PRINCIPAL" Type="bit" />
+        </EntityType>
+        <EntityType Name="CUENTA">
+          <Key>
+            <PropertyRef Name="ID_CUENTA" />
+          </Key>
+          <Property Name="ID_CUENTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ESTATUS_CUENTA" Type="int" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" />
+          <Property Name="CONTRASENA" Type="char" MaxLength="16" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+          <Property Name="APELLIDO_PATERNO" Type="varchar" MaxLength="100" />
+          <Property Name="APELLIDO_MATERNO" Type="varchar" MaxLength="100" />
+          <Property Name="RFC" Type="varchar" MaxLength="13" />
+          <Property Name="TELEFONO_FIJO" Type="varchar" MaxLength="50" />
+          <Property Name="CELULAR" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" />
+          <Property Name="FECHA_EXPIRACION" Type="datetime" />
+          <Property Name="FECHA_CREACION" Type="datetime" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" />
         </EntityType>
         <EntityType Name="ESTATUS_ARTICULO">
           <Key>
@@ -60,6 +106,14 @@
           <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
           <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OFERTA_CLIENTE_SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_OFERTA_CLIENTE_SUCURSAL" />
+          </Key>
+          <Property Name="ID_OFERTA_CLIENTE_SUCURSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_OFERTA_CLIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SUCURSAL">
           <Key>
@@ -105,6 +159,18 @@
           <Property Name="TOTAL" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ID_OFERTA_CLIENTE" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_ALMACEN_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="0..1" />
+          <End Role="ALMACEN" Type="Self.ALMACEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="ALMACEN">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ARTICULO_SUCURSAL">
           <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
           <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
@@ -177,6 +243,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="CAJA" Type="Self.CAJA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="CAJA">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUCURSAL_CUENTA">
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="0..1" />
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="SUCURSAL">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_CLIENTE_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="OFERTA_CLIENTE_SUCURSAL" Type="Self.OFERTA_CLIENTE_SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="OFERTA_CLIENTE_SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VENTA_DETALLE_ARTICULO">
           <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="0..1" />
           <End Role="VENTA_DETALLE" Type="Self.VENTA_DETALLE" Multiplicity="*" />
@@ -190,14 +292,22 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BD_VENTAModelStoreContainer">
+          <EntitySet Name="ALMACEN" EntityType="Self.ALMACEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULO" EntityType="Self.ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAJA" EntityType="Self.CAJA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CODIGO_ARTICULO" EntityType="Self.CODIGO_ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUENTA" EntityType="Self.CUENTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTATUS_ARTICULO" EntityType="Self.ESTATUS_ARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMPUESTO_ARTICULO" EntityType="Self.IMPUESTO_ARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LINEA" EntityType="Self.LINEA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OFERTA_CLIENTE_SUCURSAL" EntityType="Self.OFERTA_CLIENTE_SUCURSAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIDAD_MEDIDA" EntityType="Self.UNIDAD_MEDIDA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VENTA_DETALLE" EntityType="Self.VENTA_DETALLE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ALMACEN_SUCURSAL" Association="Self.FK_ALMACEN_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="ALMACEN" EntitySet="ALMACEN" />
+          </AssociationSet>
           <AssociationSet Name="FK_ARTICULO_SUCURSAL" Association="Self.FK_ARTICULO_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
             <End Role="ARTICULO" EntitySet="ARTICULO" />
@@ -222,13 +332,24 @@
             <End Role="LINEA" EntitySet="LINEA" />
             <End Role="ARTICULO" EntitySet="ARTICULO" />
           </AssociationSet>
+          <AssociationSet Name="FK_SUCURSAL" Association="Self.FK_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="CAJA" EntitySet="CAJA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUCURSAL_CUENTA" Association="Self.FK_SUCURSAL_CUENTA">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_CLIENTE_SUCURSAL" Association="Self.FK_TIPO_CLIENTE_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="OFERTA_CLIENTE_SUCURSAL" EntitySet="OFERTA_CLIENTE_SUCURSAL" />
+          </AssociationSet>
           <AssociationSet Name="FK_VENTA_DETALLE_ARTICULO" Association="Self.FK_VENTA_DETALLE_ARTICULO">
             <End Role="ARTICULO" EntitySet="ARTICULO" />
             <End Role="VENTA_DETALLE" EntitySet="VENTA_DETALLE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_VENTAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -319,6 +440,10 @@
           <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ARTICULO" Relationship="Self.FK_ARTICULO_SUCURSAL" FromRole="SUCURSAL" ToRole="ARTICULO" />
+          <NavigationProperty Name="ALMACEN" Relationship="BD_VENTAModel.FK_ALMACEN_SUCURSAL" FromRole="SUCURSAL" ToRole="ALMACEN" />
+          <NavigationProperty Name="CAJA" Relationship="BD_VENTAModel.FK_SUCURSAL" FromRole="SUCURSAL" ToRole="CAJA" />
+          <NavigationProperty Name="CUENTA" Relationship="BD_VENTAModel.FK_SUCURSAL_CUENTA" FromRole="SUCURSAL" ToRole="CUENTA" />
+          <NavigationProperty Name="OFERTA_CLIENTE_SUCURSAL" Relationship="BD_VENTAModel.FK_TIPO_CLIENTE_SUCURSAL" FromRole="SUCURSAL" ToRole="OFERTA_CLIENTE_SUCURSAL" />
         </EntityType>
         <EntityType Name="UNIDAD_MEDIDA">
           <Key>
@@ -467,7 +592,133 @@
             <End Role="ARTICULO" EntitySet="ARTICULO" />
             <End Role="VENTA_DETALLE" EntitySet="VENTA_DETALLE" />
           </AssociationSet>
+          <EntitySet Name="ALMACEN" EntityType="BD_VENTAModel.ALMACEN" />
+          <EntitySet Name="CAJA" EntityType="BD_VENTAModel.CAJA" />
+          <EntitySet Name="CUENTA" EntityType="BD_VENTAModel.CUENTA" />
+          <EntitySet Name="OFERTA_CLIENTE_SUCURSAL" EntityType="BD_VENTAModel.OFERTA_CLIENTE_SUCURSAL" />
+          <AssociationSet Name="FK_ALMACEN_SUCURSAL" Association="BD_VENTAModel.FK_ALMACEN_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="ALMACEN" EntitySet="ALMACEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUCURSAL" Association="BD_VENTAModel.FK_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="CAJA" EntitySet="CAJA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUCURSAL_CUENTA" Association="BD_VENTAModel.FK_SUCURSAL_CUENTA">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_CLIENTE_SUCURSAL" Association="BD_VENTAModel.FK_TIPO_CLIENTE_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="OFERTA_CLIENTE_SUCURSAL" EntitySet="OFERTA_CLIENTE_SUCURSAL" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ALMACEN">
+          <Key>
+            <PropertyRef Name="ID_ALMACEN" />
+          </Key>
+          <Property Name="ID_ALMACEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SUCURSAL" Type="Int32" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UBICACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" />
+          <NavigationProperty Name="SUCURSAL" Relationship="BD_VENTAModel.FK_ALMACEN_SUCURSAL" FromRole="ALMACEN" ToRole="SUCURSAL" />
+        </EntityType>
+        <EntityType Name="CAJA">
+          <Key>
+            <PropertyRef Name="ID_CAJA" />
+          </Key>
+          <Property Name="ID_CAJA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SUCURSAL" Relationship="BD_VENTAModel.FK_SUCURSAL" FromRole="CAJA" ToRole="SUCURSAL" />
+        </EntityType>
+        <EntityType Name="CUENTA">
+          <Key>
+            <PropertyRef Name="ID_CUENTA" />
+          </Key>
+          <Property Name="ID_CUENTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ESTATUS_CUENTA" Type="Int32" />
+          <Property Name="USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENA" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_PATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_MATERNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO_FIJO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CELULAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_EXPIRACION" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" />
+          <NavigationProperty Name="SUCURSAL" Relationship="BD_VENTAModel.FK_SUCURSAL_CUENTA" FromRole="CUENTA" ToRole="SUCURSAL" />
+        </EntityType>
+        <EntityType Name="OFERTA_CLIENTE_SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_OFERTA_CLIENTE_SUCURSAL" />
+          </Key>
+          <Property Name="ID_OFERTA_CLIENTE_SUCURSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_OFERTA_CLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SUCURSAL" Relationship="BD_VENTAModel.FK_TIPO_CLIENTE_SUCURSAL" FromRole="OFERTA_CLIENTE_SUCURSAL" ToRole="SUCURSAL" />
+        </EntityType>
+        <Association Name="FK_ALMACEN_SUCURSAL">
+          <End Type="BD_VENTAModel.SUCURSAL" Role="SUCURSAL" Multiplicity="0..1" />
+          <End Type="BD_VENTAModel.ALMACEN" Role="ALMACEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="ALMACEN">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUCURSAL">
+          <End Type="BD_VENTAModel.SUCURSAL" Role="SUCURSAL" Multiplicity="1" />
+          <End Type="BD_VENTAModel.CAJA" Role="CAJA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="CAJA">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUCURSAL_CUENTA">
+          <End Type="BD_VENTAModel.CUENTA" Role="CUENTA" Multiplicity="0..1" />
+          <End Type="BD_VENTAModel.SUCURSAL" Role="SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="SUCURSAL">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_CLIENTE_SUCURSAL">
+          <End Type="BD_VENTAModel.SUCURSAL" Role="SUCURSAL" Multiplicity="1" />
+          <End Type="BD_VENTAModel.OFERTA_CLIENTE_SUCURSAL" Role="OFERTA_CLIENTE_SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="OFERTA_CLIENTE_SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -579,6 +830,64 @@
                 <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
                 <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
                 <ScalarProperty Name="ID_OFERTA_CLIENTE" ColumnName="ID_OFERTA_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALMACEN">
+            <EntityTypeMapping TypeName="BD_VENTAModel.ALMACEN">
+              <MappingFragment StoreEntitySet="ALMACEN">
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="UBICACION" ColumnName="UBICACION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="ID_ALMACEN" ColumnName="ID_ALMACEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAJA">
+            <EntityTypeMapping TypeName="BD_VENTAModel.CAJA">
+              <MappingFragment StoreEntitySet="CAJA">
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="ID_CAJA" ColumnName="ID_CAJA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUENTA">
+            <EntityTypeMapping TypeName="BD_VENTAModel.CUENTA">
+              <MappingFragment StoreEntitySet="CUENTA">
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_EXPIRACION" ColumnName="FECHA_EXPIRACION" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="TELEFONO_FIJO" ColumnName="TELEFONO_FIJO" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
+                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="ID_ESTATUS_CUENTA" ColumnName="ID_ESTATUS_CUENTA" />
+                <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OFERTA_CLIENTE_SUCURSAL">
+            <EntityTypeMapping TypeName="BD_VENTAModel.OFERTA_CLIENTE_SUCURSAL">
+              <MappingFragment StoreEntitySet="OFERTA_CLIENTE_SUCURSAL">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="ID_OFERTA_CLIENTE" ColumnName="ID_OFERTA_CLIENTE" />
+                <ScalarProperty Name="ID_OFERTA_CLIENTE_SUCURSAL" ColumnName="ID_OFERTA_CLIENTE_SUCURSAL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
