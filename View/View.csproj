@@ -65,6 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\ArticuloViewModel.cs" />
     <Compile Include="ViewModel\CodigoArticuloViewModel.cs" />
+    <Compile Include="ViewModel\EstatusArticuloViewModel.cs" />
     <Compile Include="ViewModel\ImpuestoArticuloViewModel.cs" />
     <Compile Include="ViewModel\LineaViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />

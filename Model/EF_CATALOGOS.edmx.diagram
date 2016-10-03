@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d49c03cf7a5c4daca7fcc3337ca19205" Name="Diagram1">
+      <Diagram DiagramId="d49c03cf7a5c4daca7fcc3337ca19205" Name="Diagram1" ZoomLevel="70">
         <EntityTypeShape EntityType="BD_VENTAModel.ARTICULO" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel.CODIGO_ARTICULO" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_VENTAModel.ESTATUS_ARTICULO" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel.ESTATUS_ARTICULO" Width="2" PointX="0.5" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel.IMPUESTO_ARTICULO" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel.LINEA" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel.SUCURSAL" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
