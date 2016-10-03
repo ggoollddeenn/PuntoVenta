@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_VENTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_ARTICULO" />
+          </Key>
+          <Property Name="ID_ARTICULO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_LINEA" Type="int" Nullable="false" />
+          <Property Name="ID_ESTATUS_ARTICULO" Type="int" Nullable="false" />
+          <Property Name="ID_UNIDAD_MEDIDA" Type="int" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FABRICANTE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IMAGEN" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TIENE_CADUCIDAD" Type="int" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CODIGO_ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_CODIGO_ARTICULO" />
+          </Key>
+          <Property Name="ID_CODIGO_ARTICULO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ARTICULO" Type="int" />
+          <Property Name="CODIGO" Type="varchar" MaxLength="50" />
+          <Property Name="PRINCIPAL" Type="bit" />
+        </EntityType>
+        <EntityType Name="ESTATUS_ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_ESTATUS_ARTICULO" />
+          </Key>
+          <Property Name="ID_ESTATUS_ARTICULO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_CORTO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OBSERVACION" Type="text" />
+        </EntityType>
+        <EntityType Name="IMPUESTO_ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_IMPUESTO_ARTICULO" />
+          </Key>
+          <Property Name="ID_IMPUESTO_ARTICULO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_IMPUESTO" Type="int" Nullable="false" />
+          <Property Name="ID_ARTICULO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LINEA">
+          <Key>
+            <PropertyRef Name="ID_LINEA" />
+          </Key>
+          <Property Name="ID_LINEA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_SUCURSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CUENTA" Type="int" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NUMERO_EXTERIOR" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NUMERO_INTERIOR" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="COLONIA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MUNICIPIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODIGO_POSTAL" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UNIDAD_MEDIDA">
+          <Key>
+            <PropertyRef Name="ID_UNIDAD_MEDIDA" />
+          </Key>
+          <Property Name="ID_UNIDAD_MEDIDA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_CREACION" Type="datetime" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
+          <Property Name="ID_USUARIO_ACTUZALICION" Type="int" />
+        </EntityType>
+        <EntityType Name="VENTA_DETALLE">
+          <Key>
+            <PropertyRef Name="ID_VENTA_DETALLE" />
+          </Key>
+          <Property Name="ID_VENTA_DETALLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_VENTA" Type="int" />
+          <Property Name="ID_ARTICULO" Type="int" />
+          <Property Name="PRECIO_ARTICULO" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CANTIDAD" Type="int" />
+          <Property Name="IMPORTE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TOTAL" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ID_OFERTA_CLIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ARTICULO_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULO_UNIDAD_MEDIDA">
+          <End Role="UNIDAD_MEDIDA" Type="Self.UNIDAD_MEDIDA" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIDAD_MEDIDA">
+              <PropertyRef Name="ID_UNIDAD_MEDIDA" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_UNIDAD_MEDIDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CODIGO_ARTICULO_ARTICULO1">
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="0..1" />
+          <End Role="CODIGO_ARTICULO" Type="Self.CODIGO_ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Principal>
+            <Dependent Role="CODIGO_ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ESTATUS_ARTICULO">
+          <End Role="ESTATUS_ARTICULO" Type="Self.ESTATUS_ARTICULO" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTATUS_ARTICULO">
+              <PropertyRef Name="ID_ESTATUS_ARTICULO" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_ESTATUS_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IMPUESTO_ARTICULO_ARTICULO">
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="1" />
+          <End Role="IMPUESTO_ARTICULO" Type="Self.IMPUESTO_ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Principal>
+            <Dependent Role="IMPUESTO_ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINEA">
+          <End Role="LINEA" Type="Self.LINEA" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LINEA">
+              <PropertyRef Name="ID_LINEA" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_LINEA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_DETALLE_ARTICULO">
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="0..1" />
+          <End Role="VENTA_DETALLE" Type="Self.VENTA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Principal>
+            <Dependent Role="VENTA_DETALLE">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_VENTAModelStoreContainer">
+          <EntitySet Name="ARTICULO" EntityType="Self.ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CODIGO_ARTICULO" EntityType="Self.CODIGO_ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTATUS_ARTICULO" EntityType="Self.ESTATUS_ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMPUESTO_ARTICULO" EntityType="Self.IMPUESTO_ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LINEA" EntityType="Self.LINEA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UNIDAD_MEDIDA" EntityType="Self.UNIDAD_MEDIDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VENTA_DETALLE" EntityType="Self.VENTA_DETALLE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ARTICULO_SUCURSAL" Association="Self.FK_ARTICULO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULO_UNIDAD_MEDIDA" Association="Self.FK_ARTICULO_UNIDAD_MEDIDA">
+            <End Role="UNIDAD_MEDIDA" EntitySet="UNIDAD_MEDIDA" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CODIGO_ARTICULO_ARTICULO1" Association="Self.FK_CODIGO_ARTICULO_ARTICULO1">
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+            <End Role="CODIGO_ARTICULO" EntitySet="CODIGO_ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ESTATUS_ARTICULO" Association="Self.FK_ESTATUS_ARTICULO">
+            <End Role="ESTATUS_ARTICULO" EntitySet="ESTATUS_ARTICULO" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IMPUESTO_ARTICULO_ARTICULO" Association="Self.FK_IMPUESTO_ARTICULO_ARTICULO">
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+            <End Role="IMPUESTO_ARTICULO" EntitySet="IMPUESTO_ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINEA" Association="Self.FK_LINEA">
+            <End Role="LINEA" EntitySet="LINEA" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_DETALLE_ARTICULO" Association="Self.FK_VENTA_DETALLE_ARTICULO">
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+            <End Role="VENTA_DETALLE" EntitySet="VENTA_DETALLE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_VENTAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_ARTICULO" />
+          </Key>
+          <Property Name="ID_ARTICULO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_LINEA" Type="Int32" Nullable="false" />
+          <Property Name="ID_ESTATUS_ARTICULO" Type="Int32" Nullable="false" />
+          <Property Name="ID_UNIDAD_MEDIDA" Type="Int32" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FABRICANTE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGEN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIENE_CADUCIDAD" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_ARTICULO_SUCURSAL" FromRole="ARTICULO" ToRole="SUCURSAL" />
+          <NavigationProperty Name="UNIDAD_MEDIDA" Relationship="Self.FK_ARTICULO_UNIDAD_MEDIDA" FromRole="ARTICULO" ToRole="UNIDAD_MEDIDA" />
+          <NavigationProperty Name="CODIGO_ARTICULO" Relationship="Self.FK_CODIGO_ARTICULO_ARTICULO1" FromRole="ARTICULO" ToRole="CODIGO_ARTICULO" />
+          <NavigationProperty Name="ESTATUS_ARTICULO" Relationship="Self.FK_ESTATUS_ARTICULO" FromRole="ARTICULO" ToRole="ESTATUS_ARTICULO" />
+          <NavigationProperty Name="IMPUESTO_ARTICULO" Relationship="Self.FK_IMPUESTO_ARTICULO_ARTICULO" FromRole="ARTICULO" ToRole="IMPUESTO_ARTICULO" />
+          <NavigationProperty Name="LINEA" Relationship="Self.FK_LINEA" FromRole="ARTICULO" ToRole="LINEA" />
+          <NavigationProperty Name="VENTA_DETALLE" Relationship="Self.FK_VENTA_DETALLE_ARTICULO" FromRole="ARTICULO" ToRole="VENTA_DETALLE" />
+        </EntityType>
+        <EntityType Name="CODIGO_ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_CODIGO_ARTICULO" />
+          </Key>
+          <Property Name="ID_CODIGO_ARTICULO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ARTICULO" Type="Int32" />
+          <Property Name="CODIGO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRINCIPAL" Type="Boolean" />
+          <NavigationProperty Name="ARTICULO" Relationship="Self.FK_CODIGO_ARTICULO_ARTICULO1" FromRole="CODIGO_ARTICULO" ToRole="ARTICULO" />
+        </EntityType>
+        <EntityType Name="ESTATUS_ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_ESTATUS_ARTICULO" />
+          </Key>
+          <Property Name="ID_ESTATUS_ARTICULO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_CORTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OBSERVACION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ARTICULO" Relationship="Self.FK_ESTATUS_ARTICULO" FromRole="ESTATUS_ARTICULO" ToRole="ARTICULO" />
+        </EntityType>
+        <EntityType Name="IMPUESTO_ARTICULO">
+          <Key>
+            <PropertyRef Name="ID_IMPUESTO_ARTICULO" />
+          </Key>
+          <Property Name="ID_IMPUESTO_ARTICULO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_IMPUESTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_ARTICULO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ARTICULO" Relationship="Self.FK_IMPUESTO_ARTICULO_ARTICULO" FromRole="IMPUESTO_ARTICULO" ToRole="ARTICULO" />
+        </EntityType>
+        <EntityType Name="LINEA">
+          <Key>
+            <PropertyRef Name="ID_LINEA" />
+          </Key>
+          <Property Name="ID_LINEA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ARTICULO" Relationship="Self.FK_LINEA" FromRole="LINEA" ToRole="ARTICULO" />
+        </EntityType>
+        <EntityType Name="SUCURSAL">
+          <Key>
+            <PropertyRef Name="ID_SUCURSAL" />
+          </Key>
+          <Property Name="ID_SUCURSAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CUENTA" Type="Int32" />
+          <Property Name="NOMBRE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMERO_EXTERIOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMERO_INTERIOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COLONIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MUNICIPIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODIGO_POSTAL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ARTICULO" Relationship="Self.FK_ARTICULO_SUCURSAL" FromRole="SUCURSAL" ToRole="ARTICULO" />
+        </EntityType>
+        <EntityType Name="UNIDAD_MEDIDA">
+          <Key>
+            <PropertyRef Name="ID_UNIDAD_MEDIDA" />
+          </Key>
+          <Property Name="ID_UNIDAD_MEDIDA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUZALICION" Type="Int32" />
+          <NavigationProperty Name="ARTICULO" Relationship="Self.FK_ARTICULO_UNIDAD_MEDIDA" FromRole="UNIDAD_MEDIDA" ToRole="ARTICULO" />
+        </EntityType>
+        <EntityType Name="VENTA_DETALLE">
+          <Key>
+            <PropertyRef Name="ID_VENTA_DETALLE" />
+          </Key>
+          <Property Name="ID_VENTA_DETALLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_VENTA" Type="Int32" />
+          <Property Name="ID_ARTICULO" Type="Int32" />
+          <Property Name="PRECIO_ARTICULO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CANTIDAD" Type="Int32" />
+          <Property Name="IMPORTE" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TOTAL" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ID_OFERTA_CLIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ARTICULO" Relationship="Self.FK_VENTA_DETALLE_ARTICULO" FromRole="VENTA_DETALLE" ToRole="ARTICULO" />
+        </EntityType>
+        <Association Name="FK_ARTICULO_SUCURSAL">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULO_UNIDAD_MEDIDA">
+          <End Role="UNIDAD_MEDIDA" Type="Self.UNIDAD_MEDIDA" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIDAD_MEDIDA">
+              <PropertyRef Name="ID_UNIDAD_MEDIDA" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_UNIDAD_MEDIDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CODIGO_ARTICULO_ARTICULO1">
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="0..1" />
+          <End Role="CODIGO_ARTICULO" Type="Self.CODIGO_ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Principal>
+            <Dependent Role="CODIGO_ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ESTATUS_ARTICULO">
+          <End Role="ESTATUS_ARTICULO" Type="Self.ESTATUS_ARTICULO" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTATUS_ARTICULO">
+              <PropertyRef Name="ID_ESTATUS_ARTICULO" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_ESTATUS_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IMPUESTO_ARTICULO_ARTICULO">
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="1" />
+          <End Role="IMPUESTO_ARTICULO" Type="Self.IMPUESTO_ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Principal>
+            <Dependent Role="IMPUESTO_ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINEA">
+          <End Role="LINEA" Type="Self.LINEA" Multiplicity="1" />
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LINEA">
+              <PropertyRef Name="ID_LINEA" />
+            </Principal>
+            <Dependent Role="ARTICULO">
+              <PropertyRef Name="ID_LINEA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_DETALLE_ARTICULO">
+          <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="0..1" />
+          <End Role="VENTA_DETALLE" Type="Self.VENTA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Principal>
+            <Dependent Role="VENTA_DETALLE">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_VENTAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ARTICULO" EntityType="Self.ARTICULO" />
+          <EntitySet Name="CODIGO_ARTICULO" EntityType="Self.CODIGO_ARTICULO" />
+          <EntitySet Name="ESTATUS_ARTICULO" EntityType="Self.ESTATUS_ARTICULO" />
+          <EntitySet Name="IMPUESTO_ARTICULO" EntityType="Self.IMPUESTO_ARTICULO" />
+          <EntitySet Name="LINEA" EntityType="Self.LINEA" />
+          <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" />
+          <EntitySet Name="UNIDAD_MEDIDA" EntityType="Self.UNIDAD_MEDIDA" />
+          <EntitySet Name="VENTA_DETALLE" EntityType="Self.VENTA_DETALLE" />
+          <AssociationSet Name="FK_ARTICULO_SUCURSAL" Association="Self.FK_ARTICULO_SUCURSAL">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULO_UNIDAD_MEDIDA" Association="Self.FK_ARTICULO_UNIDAD_MEDIDA">
+            <End Role="UNIDAD_MEDIDA" EntitySet="UNIDAD_MEDIDA" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CODIGO_ARTICULO_ARTICULO1" Association="Self.FK_CODIGO_ARTICULO_ARTICULO1">
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+            <End Role="CODIGO_ARTICULO" EntitySet="CODIGO_ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ESTATUS_ARTICULO" Association="Self.FK_ESTATUS_ARTICULO">
+            <End Role="ESTATUS_ARTICULO" EntitySet="ESTATUS_ARTICULO" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IMPUESTO_ARTICULO_ARTICULO" Association="Self.FK_IMPUESTO_ARTICULO_ARTICULO">
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+            <End Role="IMPUESTO_ARTICULO" EntitySet="IMPUESTO_ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINEA" Association="Self.FK_LINEA">
+            <End Role="LINEA" EntitySet="LINEA" />
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_DETALLE_ARTICULO" Association="Self.FK_VENTA_DETALLE_ARTICULO">
+            <End Role="ARTICULO" EntitySet="ARTICULO" />
+            <End Role="VENTA_DETALLE" EntitySet="VENTA_DETALLE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_VENTAModelStoreContainer" CdmEntityContainer="BD_VENTAEntities">
+          <EntitySetMapping Name="ARTICULO">
+            <EntityTypeMapping TypeName="BD_VENTAModel.ARTICULO">
+              <MappingFragment StoreEntitySet="ARTICULO">
+                <ScalarProperty Name="ID_ARTICULO" ColumnName="ID_ARTICULO" />
+                <ScalarProperty Name="ID_LINEA" ColumnName="ID_LINEA" />
+                <ScalarProperty Name="ID_ESTATUS_ARTICULO" ColumnName="ID_ESTATUS_ARTICULO" />
+                <ScalarProperty Name="ID_UNIDAD_MEDIDA" ColumnName="ID_UNIDAD_MEDIDA" />
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="FABRICANTE" ColumnName="FABRICANTE" />
+                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
+                <ScalarProperty Name="TIENE_CADUCIDAD" ColumnName="TIENE_CADUCIDAD" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CODIGO_ARTICULO">
+            <EntityTypeMapping TypeName="BD_VENTAModel.CODIGO_ARTICULO">
+              <MappingFragment StoreEntitySet="CODIGO_ARTICULO">
+                <ScalarProperty Name="ID_CODIGO_ARTICULO" ColumnName="ID_CODIGO_ARTICULO" />
+                <ScalarProperty Name="ID_ARTICULO" ColumnName="ID_ARTICULO" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="PRINCIPAL" ColumnName="PRINCIPAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTATUS_ARTICULO">
+            <EntityTypeMapping TypeName="BD_VENTAModel.ESTATUS_ARTICULO">
+              <MappingFragment StoreEntitySet="ESTATUS_ARTICULO">
+                <ScalarProperty Name="ID_ESTATUS_ARTICULO" ColumnName="ID_ESTATUS_ARTICULO" />
+                <ScalarProperty Name="NOMBRE_CORTO" ColumnName="NOMBRE_CORTO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="OBSERVACION" ColumnName="OBSERVACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMPUESTO_ARTICULO">
+            <EntityTypeMapping TypeName="BD_VENTAModel.IMPUESTO_ARTICULO">
+              <MappingFragment StoreEntitySet="IMPUESTO_ARTICULO">
+                <ScalarProperty Name="ID_IMPUESTO_ARTICULO" ColumnName="ID_IMPUESTO_ARTICULO" />
+                <ScalarProperty Name="ID_IMPUESTO" ColumnName="ID_IMPUESTO" />
+                <ScalarProperty Name="ID_ARTICULO" ColumnName="ID_ARTICULO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LINEA">
+            <EntityTypeMapping TypeName="BD_VENTAModel.LINEA">
+              <MappingFragment StoreEntitySet="LINEA">
+                <ScalarProperty Name="ID_LINEA" ColumnName="ID_LINEA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUCURSAL">
+            <EntityTypeMapping TypeName="BD_VENTAModel.SUCURSAL">
+              <MappingFragment StoreEntitySet="SUCURSAL">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
+                <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="NUMERO_EXTERIOR" ColumnName="NUMERO_EXTERIOR" />
+                <ScalarProperty Name="NUMERO_INTERIOR" ColumnName="NUMERO_INTERIOR" />
+                <ScalarProperty Name="COLONIA" ColumnName="COLONIA" />
+                <ScalarProperty Name="MUNICIPIO" ColumnName="MUNICIPIO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UNIDAD_MEDIDA">
+            <EntityTypeMapping TypeName="BD_VENTAModel.UNIDAD_MEDIDA">
+              <MappingFragment StoreEntitySet="UNIDAD_MEDIDA">
+                <ScalarProperty Name="ID_UNIDAD_MEDIDA" ColumnName="ID_UNIDAD_MEDIDA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_ACTUZALICION" ColumnName="ID_USUARIO_ACTUZALICION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENTA_DETALLE">
+            <EntityTypeMapping TypeName="BD_VENTAModel.VENTA_DETALLE">
+              <MappingFragment StoreEntitySet="VENTA_DETALLE">
+                <ScalarProperty Name="ID_VENTA_DETALLE" ColumnName="ID_VENTA_DETALLE" />
+                <ScalarProperty Name="ID_VENTA" ColumnName="ID_VENTA" />
+                <ScalarProperty Name="ID_ARTICULO" ColumnName="ID_ARTICULO" />
+                <ScalarProperty Name="PRECIO_ARTICULO" ColumnName="PRECIO_ARTICULO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="ID_OFERTA_CLIENTE" ColumnName="ID_OFERTA_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
