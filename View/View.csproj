@@ -68,6 +68,7 @@
     <Compile Include="ViewModel\EstatusArticuloViewModel.cs" />
     <Compile Include="ViewModel\ImpuestoArticuloViewModel.cs" />
     <Compile Include="ViewModel\LineaViewModel.cs" />
+    <Compile Include="ViewModel\PerfilViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\UnidadMedidaViewModel.cs" />
     <Page Include="MainWindow.xaml">
