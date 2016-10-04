@@ -79,6 +79,27 @@
           <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" />
         </EntityType>
+        <EntityType Name="EMPLEADO">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CUENTA" Type="int" Nullable="false" />
+          <Property Name="ID_PERFIL" Type="int" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CONTRASENA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="APELLIDO_PATERNO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="APELLIDO_MATERNO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RFC" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="TELEFONO_FIJO" Type="varchar" MaxLength="50" />
+          <Property Name="CELULAR" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ESTATUS_ARTICULO">
           <Key>
             <PropertyRef Name="ID_ESTATUS_ARTICULO" />
@@ -114,6 +135,17 @@
           <Property Name="ID_OFERTA_CLIENTE_SUCURSAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_OFERTA_CLIENTE" Type="int" Nullable="false" />
           <Property Name="ID_SUCURSAL" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERFIL">
+          <Key>
+            <PropertyRef Name="ID_PERFIL" />
+          </Key>
+          <Property Name="ID_PERFIL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PERFIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" />
         </EntityType>
         <EntityType Name="SUCURSAL">
           <Key>
@@ -207,6 +239,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EMPLEADO_CUENTA">
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_PERFIL">
+          <End Role="PERFIL" Type="Self.PERFIL" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFIL">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ESTATUS_ARTICULO">
           <End Role="ESTATUS_ARTICULO" Type="Self.ESTATUS_ARTICULO" Multiplicity="1" />
           <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
@@ -297,10 +353,12 @@
           <EntitySet Name="CAJA" EntityType="Self.CAJA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CODIGO_ARTICULO" EntityType="Self.CODIGO_ARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUENTA" EntityType="Self.CUENTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTATUS_ARTICULO" EntityType="Self.ESTATUS_ARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMPUESTO_ARTICULO" EntityType="Self.IMPUESTO_ARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LINEA" EntityType="Self.LINEA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFERTA_CLIENTE_SUCURSAL" EntityType="Self.OFERTA_CLIENTE_SUCURSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERFIL" EntityType="Self.PERFIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIDAD_MEDIDA" EntityType="Self.UNIDAD_MEDIDA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VENTA_DETALLE" EntityType="Self.VENTA_DETALLE" Schema="dbo" store:Type="Tables" />
@@ -319,6 +377,14 @@
           <AssociationSet Name="FK_CODIGO_ARTICULO_ARTICULO1" Association="Self.FK_CODIGO_ARTICULO_ARTICULO1">
             <End Role="ARTICULO" EntitySet="ARTICULO" />
             <End Role="CODIGO_ARTICULO" EntitySet="CODIGO_ARTICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_CUENTA" Association="Self.FK_EMPLEADO_CUENTA">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_PERFIL" Association="Self.FK_EMPLEADO_PERFIL">
+            <End Role="PERFIL" EntitySet="PERFIL" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
           </AssociationSet>
           <AssociationSet Name="FK_ESTATUS_ARTICULO" Association="Self.FK_ESTATUS_ARTICULO">
             <End Role="ESTATUS_ARTICULO" EntitySet="ESTATUS_ARTICULO" />
@@ -612,6 +678,16 @@
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
             <End Role="OFERTA_CLIENTE_SUCURSAL" EntitySet="OFERTA_CLIENTE_SUCURSAL" />
           </AssociationSet>
+          <EntitySet Name="PERFIL" EntityType="BD_VENTAModel.PERFIL" />
+          <EntitySet Name="EMPLEADO" EntityType="BD_VENTAModel.EMPLEADO" />
+          <AssociationSet Name="FK_EMPLEADO_CUENTA" Association="BD_VENTAModel.FK_EMPLEADO_CUENTA">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_PERFIL" Association="BD_VENTAModel.FK_EMPLEADO_PERFIL">
+            <End Role="PERFIL" EntitySet="PERFIL" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ALMACEN">
           <Key>
@@ -661,6 +737,7 @@
           <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" />
           <NavigationProperty Name="SUCURSAL" Relationship="BD_VENTAModel.FK_SUCURSAL_CUENTA" FromRole="CUENTA" ToRole="SUCURSAL" />
+          <NavigationProperty Name="EMPLEADO" Relationship="BD_VENTAModel.FK_EMPLEADO_CUENTA" FromRole="CUENTA" ToRole="EMPLEADO" />
         </EntityType>
         <EntityType Name="OFERTA_CLIENTE_SUCURSAL">
           <Key>
@@ -716,6 +793,65 @@
             </Principal>
             <Dependent Role="OFERTA_CLIENTE_SUCURSAL">
               <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PERFIL">
+          <Key>
+            <PropertyRef Name="ID_PERFIL" />
+          </Key>
+          <Property Name="ID_PERFIL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PERFIL1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" />
+          <NavigationProperty Name="EMPLEADO" Relationship="BD_VENTAModel.FK_EMPLEADO_PERFIL" FromRole="PERFIL" ToRole="EMPLEADO" />
+        </EntityType>
+        <EntityType Name="EMPLEADO">
+          <Key>
+            <PropertyRef Name="ID_EMPLEADO" />
+          </Key>
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CUENTA" Type="Int32" Nullable="false" />
+          <Property Name="ID_PERFIL" Type="Int32" Nullable="false" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_PATERNO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_MATERNO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO_FIJO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CELULAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CUENTA" Relationship="BD_VENTAModel.FK_EMPLEADO_CUENTA" FromRole="EMPLEADO" ToRole="CUENTA" />
+          <NavigationProperty Name="PERFIL" Relationship="BD_VENTAModel.FK_EMPLEADO_PERFIL" FromRole="EMPLEADO" ToRole="PERFIL" />
+        </EntityType>
+        <Association Name="FK_EMPLEADO_CUENTA">
+          <End Type="BD_VENTAModel.CUENTA" Role="CUENTA" Multiplicity="1" />
+          <End Type="BD_VENTAModel.EMPLEADO" Role="EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_PERFIL">
+          <End Type="BD_VENTAModel.PERFIL" Role="PERFIL" Multiplicity="1" />
+          <End Type="BD_VENTAModel.EMPLEADO" Role="EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFIL">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_PERFIL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -888,6 +1024,40 @@
                 <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="ID_OFERTA_CLIENTE" ColumnName="ID_OFERTA_CLIENTE" />
                 <ScalarProperty Name="ID_OFERTA_CLIENTE_SUCURSAL" ColumnName="ID_OFERTA_CLIENTE_SUCURSAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERFIL">
+            <EntityTypeMapping TypeName="BD_VENTAModel.PERFIL">
+              <MappingFragment StoreEntitySet="PERFIL">
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="PERFIL1" ColumnName="PERFIL" />
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLEADO">
+            <EntityTypeMapping TypeName="BD_VENTAModel.EMPLEADO">
+              <MappingFragment StoreEntitySet="EMPLEADO">
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="TELEFONO_FIJO" ColumnName="TELEFONO_FIJO" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="APELLIDO_MATERNO" ColumnName="APELLIDO_MATERNO" />
+                <ScalarProperty Name="APELLIDO_PATERNO" ColumnName="APELLIDO_PATERNO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+                <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+                <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

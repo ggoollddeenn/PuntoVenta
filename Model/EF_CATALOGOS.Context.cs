@@ -37,5 +37,7 @@ namespace Model
         public virtual DbSet<CAJA> CAJA { get; set; }
         public virtual DbSet<CUENTA> CUENTA { get; set; }
         public virtual DbSet<OFERTA_CLIENTE_SUCURSAL> OFERTA_CLIENTE_SUCURSAL { get; set; }
+        public virtual DbSet<PERFIL> PERFIL { get; set; }
+        public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
     }
 }

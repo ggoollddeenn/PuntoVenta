@@ -81,6 +81,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EF_CATALOGOS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EMPLEADO.cs">
+      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+    </Compile>
     <Compile Include="ESTATUS_ARTICULO.cs">
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
@@ -91,6 +94,9 @@
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
     <Compile Include="OFERTA_CLIENTE_SUCURSAL.cs">
+      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PERFIL.cs">
       <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
