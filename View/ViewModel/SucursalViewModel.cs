@@ -207,5 +207,5 @@ namespace View.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
     }
-
+    #endregion
 }
