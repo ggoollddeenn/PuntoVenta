@@ -72,7 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AlmacenViewModel.cs" />
     <Compile Include="ViewModel\ArticuloViewModel.cs" />
+    <Compile Include="ViewModel\CajaViewModel.cs" />
     <Compile Include="ViewModel\CodigoArticuloViewModel.cs" />
     <Compile Include="ViewModel\DataManager.cs" />
     <Compile Include="ViewModel\EmpleadoViewModel.cs" />
@@ -80,7 +82,9 @@
     <Compile Include="ViewModel\ImpuestoArticuloViewModel.cs" />
     <Compile Include="ViewModel\LineaViewModel.cs" />
     <Compile Include="ViewModel\PerfilViewModel.cs" />
+    <Compile Include="ViewModel\OfertaClienteSucursalViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\SucursalViewModel.cs" />
     <Compile Include="ViewModel\UnidadMedidaViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

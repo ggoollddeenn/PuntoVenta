@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="BD_VENTAModel.ALMACEN" Width="1.5" PointX="9.25" PointY="11.25" />
         <EntityTypeShape EntityType="BD_VENTAModel.CAJA" Width="1.5" PointX="3" PointY="9.625" />
         <EntityTypeShape EntityType="BD_VENTAModel.CUENTA" Width="1.5" PointX="9.5" PointY="15.625" />
-        <EntityTypeShape EntityType="BD_VENTAModel.OFERTA_CLIENTE_SUCURSAL" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="BD_VENTAModel.OFERTA_CLIENTE_SUCURSAL" Width="2.125" PointX="3" PointY="16.5" />
         <AssociationConnector Association="BD_VENTAModel.FK_ALMACEN_SUCURSAL" />
         <AssociationConnector Association="BD_VENTAModel.FK_SUCURSAL" />
         <AssociationConnector Association="BD_VENTAModel.FK_SUCURSAL_CUENTA" />
