@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
@@ -12,10 +13,11 @@ namespace View.ViewModel
     class ImpuestoArticuloViewModel : INotifyPropertyChanged
     {
         IMPUESTO_ARTICULO Model;
+        EmpleadoViewModel _empleadoViewModel;
 
-        public ImpuestoArticuloViewModel()
+        public ImpuestoArticuloViewModel(EmpleadoViewModel empleadoViewModel)
         {
-
+            _empleadoViewModel = empleadoViewModel;
         }
 
         public int ID_IMPUESTO_ARTICULO
@@ -73,6 +75,48 @@ namespace View.ViewModel
 
         #region Propiedades Model
 
+        #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarImpuestoArticulo(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarImpuestoArticulo(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarImpuestoArticulo(Model);
+        }
         #endregion
 
         void NotifyChange(params string[] ids)

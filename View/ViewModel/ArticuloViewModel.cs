@@ -5,15 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class ArticuloViewModel : INotifyPropertyChanged
     {
         ARTICULO Model;
+        EmpleadoViewModel _elEmpleado;
 
-        public ArticuloViewModel()
+        public ArticuloViewModel(EmpleadoViewModel Empleado)
         {
+            _elEmpleado = Empleado;
         }
 
         #region Propiedades Model
@@ -266,6 +269,48 @@ namespace View.ViewModel
                 Model.CODIGO_ARTICULO = value;
                 NotifyChange("CODIGO_ARTICULO");
             }
+        }
+        #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarArticulo(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarArticulo(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarArticulo(Model);
         }
         #endregion
 

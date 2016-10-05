@@ -5,13 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class PerfilViewModel : INotifyPropertyChanged
     {
         PERFIL Model;
-        public PerfilViewModel() {
+        EmpleadoViewModel _empleadoViewModel;
+
+        public PerfilViewModel(EmpleadoViewModel empleadoViewModel) {
+            _empleadoViewModel = empleadoViewModel;
         }
 
         #region Propiedades del Modelo
@@ -48,6 +52,49 @@ namespace View.ViewModel
         public Nullable<int> ID_USUARIO_ACTUALIZACION {
             get { return Model.ID_USUARIO_ACTUALIZACION; }
             set { Model.ID_USUARIO_ACTUALIZACION = value; NotifyChange("ID_USUARIO_ACTUALIZACION"); }
+        }
+        #endregion
+
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarPerfil(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarPerfil(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarPerfil(Model);
         }
         #endregion
 

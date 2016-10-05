@@ -5,12 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class OfertaClienteSucursalViewModel : INotifyPropertyChanged
     {
         OFERTA_CLIENTE_SUCURSAL Model;
+        EmpleadoViewModel _empleadoViewModel;
+
+        public OfertaClienteSucursalViewModel(EmpleadoViewModel empleadoViewModel)
+        {
+            _empleadoViewModel = empleadoViewModel;
+        }
+
         #region Propiedades Model
         public int ID_OFERTA_CLIENTE_SUCURSAL {
             get
@@ -60,6 +68,48 @@ namespace View.ViewModel
         }
 
 
+        #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarOfertaClienteSucursal(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarOfertaClienteSucursal(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarOfertaClienteSucursal(Model);
+        }
         #endregion
 
         void NotifyChange(params string[] ids)

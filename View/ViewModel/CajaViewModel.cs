@@ -5,12 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class CajaViewModel : INotifyPropertyChanged
     {
         CAJA Model;
+        EmpleadoViewModel _empleadoViewModel;
+
+        public CajaViewModel(EmpleadoViewModel empleadoViewModel)
+        {
+            _empleadoViewModel = empleadoViewModel;
+        }
+
         #region Propiedades Model
         public int ID_CAJA
         {
@@ -106,6 +114,48 @@ namespace View.ViewModel
                 Model.SUCURSAL = value;
                 NotifyChange("SUCURSAL");
             }
+        }
+        #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarCaja(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarCaja(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarCaja(Model);
         }
         #endregion
 
