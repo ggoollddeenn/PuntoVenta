@@ -5,17 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class LineaViewModel : INotifyPropertyChanged
     {
         LINEA Model;
+        EmpleadoViewModel _elEmpleado;
 
-        public LineaViewModel()
+        #region Constructores
+        public LineaViewModel(EmpleadoViewModel Empleado)
         {
-
+            _elEmpleado = Empleado;
         }
+        #endregion
 
         #region Propiedades del modelo
         public int ID_LINEA
@@ -97,6 +101,40 @@ namespace View.ViewModel
         }
 
         public
+        #endregion
+
+        #region Commandos
+        ICommand Insertar{
+            get{
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar {
+            get {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar() {
+            DataManager.insertarLinea(Model);
+        }
+
+        void editar() {
+            DataManager.editarLinea(Model);
+        }
+        void eliminar() {
+            DataManager.eliminarLinea(Model);
+        }
         #endregion
 
         void NotifyChange(params string[] ids)

@@ -23,5 +23,23 @@ namespace View.ViewModel
             }
                 return respuesta;
         }
+
+        public static void insertarLinea(LINEA _linea) {
+            using (var Contexto = new BD_VENTAEntities()) {
+                Contexto.LINEA.Add(_linea);
+                Contexto.SaveChanges();
+            }
+        }
+
+        public static void eliminarLinea(LINEA _linea){
+            using (var Contexto = new BD_VENTAEntities()) {
+                Contexto.LINEA.Remove(_linea);
+            }
+        }
+
+        public static void editarLinea(LINEA _linea) {
+            using (var Contexto = new BD_VENTAEntities()) {
+            }
+        }
     }
 }

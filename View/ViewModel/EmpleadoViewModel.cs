@@ -94,6 +94,8 @@ namespace View.ViewModel
         }
         #endregion
 
+        
+
         void NotifyChange(params string[] ids)
         {
             if (PropertyChanged != null)
