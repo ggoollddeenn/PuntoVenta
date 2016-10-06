@@ -5,12 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class CodigoArticuloViewModel : INotifyPropertyChanged
     {
         CODIGO_ARTICULO Model;
+        EmpleadoViewModel _empleadoViewModel;
+
+        public CodigoArticuloViewModel(EmpleadoViewModel empleadoViewModel)
+        {
+            _empleadoViewModel = empleadoViewModel;
+        }
 
         #region Propiedades Model
 
@@ -86,6 +93,48 @@ namespace View.ViewModel
             if (PropertyChanged != null)
                 foreach (var id in ids)
                     PropertyChanged(this, new PropertyChangedEventArgs(id));
+        }
+        #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarCodigoArticulo(Model);
+        }
+
+        void editar()
+        {
+            DataManager.eliminarCodigoArticulo(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarCodigoArticulo(Model);
         }
         #endregion
 

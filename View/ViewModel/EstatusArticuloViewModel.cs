@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
@@ -12,9 +13,11 @@ namespace View.ViewModel
     public class EstatusArticuloViewModel : INotifyPropertyChanged
     {
         ESTATUS_ARTICULO Model;
+        EmpleadoViewModel _empleadoViewModel;
 
-        public EstatusArticuloViewModel()
+        public EstatusArticuloViewModel(EmpleadoViewModel empleadoViewModel)
         {
+            _empleadoViewModel = empleadoViewModel;
         }
 
         #region Propiedades Model
@@ -88,6 +91,49 @@ namespace View.ViewModel
 
 
 
+        #endregion
+
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarEstatusArticulo(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarEstatusAritculo(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarEstatusArticulo(Model);
+        }
         #endregion
 
         void NotifyChange(params string[] ids)

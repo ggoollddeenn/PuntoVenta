@@ -5,16 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Model;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     class UnidadMedidaViewModel : INotifyPropertyChanged
     {
         UNIDAD_MEDIDA Model;
+        EmpleadoViewModel _empleadoViewModel;
 
-        public UnidadMedidaViewModel()
+        public UnidadMedidaViewModel(EmpleadoViewModel empleadoViewModel)
         {
-
+            _empleadoViewModel = empleadoViewModel;
         }
 
         public int ID_UNIDAD_MEDIDA
@@ -114,6 +116,49 @@ namespace View.ViewModel
 
         #region Propiedades Model
         #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarUnidadMedida(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarUnidadMedida(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarUnidadMedida(Model);
+        }
+        #endregion
+
 
         void NotifyChange(params string[] ids)
         {

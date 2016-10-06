@@ -5,12 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Model;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class SucursalViewModel : INotifyPropertyChanged
     {
         SUCURSAL Model;
+        EmpleadoViewModel _elEmpleado;
+
+        public SucursalViewModel(EmpleadoViewModel Empleado)
+        {
+            _elEmpleado = Empleado;
+        }
 
         #region Propiedades Model
 
@@ -193,9 +200,51 @@ namespace View.ViewModel
                 NotifyChange("ID_USUARIO_ACTUALIZACION");
             }
         }
-    
 
         #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarSucursal(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarSucursal(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarSucursal(Model);
+        }
+        #endregion
+
         void NotifyChange(params string[] ids)
         {
             if (PropertyChanged != null)

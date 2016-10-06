@@ -5,13 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
     public class AlmacenViewModel : INotifyPropertyChanged
     {
         ALMACEN Model;
+        EmpleadoViewModel _empleadoViewModel;
+
         #region Propiedades Model
+
+        public AlmacenViewModel(EmpleadoViewModel empleadoViewModel)
+        {
+            _empleadoViewModel = empleadoViewModel;
+        }
 
         public int ID_ALMACEN {
             get
@@ -121,6 +129,48 @@ namespace View.ViewModel
             }
         }
 
+        #endregion
+
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
+
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+
+        #region Métodos
+        void insertar()
+        {
+            DataManager.insertarAlmacen(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarAlmacen(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarAlmacen(Model);
+        }
         #endregion
 
         void NotifyChange(params string[] ids)
