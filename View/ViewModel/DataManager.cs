@@ -8,20 +8,23 @@ namespace View.ViewModel
 {
     public class DataManager
     {
-        public static bool login(string usuario, string contrasena)
+        public static Task<bool> login(string usuario, string contrasena)
         {
-            bool respuesta = false;
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                var lista = (from empleados in Contexto.EMPLEADO
-                             where empleados.USUARIO == usuario && empleados.CONTRASENA == contrasena
-                             select empleados).ToList();
-                if (lista.Count > 0)
+                bool respuesta = false;
+                using (var Contexto = new BD_VENTAEntities())
                 {
-                    respuesta = true;
+                    var lista = (from empleados in Contexto.EMPLEADO
+                                 where empleados.USUARIO == usuario && empleados.CONTRASENA == contrasena
+                                 select empleados).ToList();
+                    if (lista.Count > 0)
+                    {
+                        respuesta = true;
+                    }
                 }
-            }
                 return respuesta;
+            });
         }
 
         public static void insertarLinea(LINEA _linea) {
