@@ -8,20 +8,28 @@ namespace View.ViewModel
 {
     public class DataManager
     {
-        public static Task<bool> login(string usuario, string contrasena)
+
+        public static Task<int> login(string usuario, string contrasena)
         {
             return Task.Run(() =>
             {
-                bool respuesta = false;
-                using (var Contexto = new BD_VENTAEntities())
+                int respuesta = 0;
+                try
                 {
-                    var lista = (from empleados in Contexto.EMPLEADO
-                                 where empleados.USUARIO == usuario && empleados.CONTRASENA == contrasena
-                                 select empleados).ToList();
-                    if (lista.Count > 0)
+                    using (var Contexto = new BD_VENTAEntities())
                     {
-                        respuesta = true;
+                        var idEmpleado = (from empleados in Contexto.EMPLEADO
+                                          join cuentas in Contexto.CUENTA
+                                          on empleados.ID_CUENTA equals cuentas.ID_CUENTA
+                                          where empleados.USUARIO == usuario && empleados.CONTRASENA == contrasena && cuentas.ID_ESTATUS_CUENTA == 1
+                                          select empleados.ID_EMPLEADO).FirstOrDefault().ToString();
+                        if (idEmpleado != "" && !string.IsNullOrEmpty(idEmpleado))
+                            respuesta = Convert.ToInt32(idEmpleado);
                     }
+                }
+                catch (Exception error)
+                {
+                    registrarError("login()",error.Message);
                 }
                 return respuesta;
             });
@@ -283,6 +291,11 @@ namespace View.ViewModel
             using (var Contexto = new BD_VENTAEntities())
             {
             }
+        }
+
+        public static void registrarError(string metodo, string descripcion)
+        {
+
         }
     }
 }

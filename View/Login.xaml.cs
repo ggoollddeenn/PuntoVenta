@@ -32,8 +32,8 @@ namespace View
             var metroWindow = getWindow("Login") as MetroWindow;
             
             var controller = await metroWindow.ShowProgressAsync("Please wait", "Connecting to the database...");
-            bool respuesta = await DataManager.login(txtUsuario.Text, txtContrasena.Password);
-            if (respuesta)
+            int respuesta = await DataManager.login(txtUsuario.Text, txtContrasena.Password);
+            if (respuesta != 0)
             {
 
                 controller.SetMessage("Bienvenido");
