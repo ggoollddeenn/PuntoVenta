@@ -29,268 +29,918 @@ namespace View.ViewModel
                 }
                 catch (Exception error)
                 {
-                    registrarError("login()",error.Message);
+                    registrarError("login()", error.Message);
                 }
                 return respuesta;
             });
         }
 
-        public static void insertarLinea(LINEA _linea) {
-            using (var Contexto = new BD_VENTAEntities()) {
-                Contexto.LINEA.Add(_linea);
-                Contexto.SaveChanges();
-            }
-        }
-
-        public static void eliminarLinea(LINEA _linea){
-            using (var Contexto = new BD_VENTAEntities()) {
-                Contexto.LINEA.Remove(_linea);
-            }
-        }
-
-        public static void editarLinea(LINEA _linea) {
-            using (var Contexto = new BD_VENTAEntities()) {
-            }
-        }
-
-        public static void insertarArticulo(ARTICULO _articulo)
-        {
-            using (var Contexto = new BD_VENTAEntities())
+        public static Task<int> insertarLinea(LINEA _linea) {
+            return Task.Run(() =>
             {
-                Contexto.ARTICULO.Add(_articulo);
-                Contexto.SaveChanges();
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.LINEA.Add(_linea);
+                        Contexto.SaveChanges();
+                    }
+
+                    respuesta = _linea.ID_LINEA;
+                }
+                catch (Exception error)
+                {
+                    registrarError("insertarLinea()", error.Message);
+                }
+             return respuesta;
+            });
         }
 
-        public static void eliminarArticulo(ARTICULO _articulo)
-        {
-            using (var Contexto = new BD_VENTAEntities())
+        public static Task<bool> eliminarLinea(LINEA _linea){
+            return Task.Run(() =>
             {
-                Contexto.ARTICULO.Remove(_articulo);
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.LINEA.Remove(_linea);
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarLinea()", error.Message);
+                }
+                finally{
+                    respuesta = true;
+                }
+            
+
+                return respuesta;
+            });
         }
 
-        public static void editarArticulo(ARTICULO _articulo)
-        {
-            using (var Contexto = new BD_VENTAEntities())
+        public static Task<bool> editarLinea(LINEA _linea) {
+            return Task.Run(() =>
             {
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarLinea()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+                return respuesta;
+            });
         }
 
-        public static void insertarSucursal(SUCURSAL _sucursal)
+        public static Task<int> insertarArticulo(ARTICULO _articulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.SUCURSAL.Add(_sucursal);
-                Contexto.SaveChanges();
+                int regresar = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.ARTICULO.Add(_articulo);
+                        Contexto.SaveChanges();
+                    }
+                }
+                catch (Exception error)
+                {
+                    regresar = 0;
+                    registrarError("insertarArticulo()", error.Message);
+                }
+                finally
+                {
+                    regresar = _articulo.ID_ARTICULO;
+                }
+
+                return regresar;
+            });
+
+          }
+
+        public static Task<bool> eliminarArticulo(ARTICULO _articulo)
+        {
+            return Task.Run(() =>
+            {
+            bool respuesta = false;
+            try
+            {
+
+                using (var Contexto = new BD_VENTAEntities()){
+                    Contexto.ARTICULO.Remove(_articulo);
+                }
             }
+            catch (Exception error)
+            {
+                    respuesta = false;
+                    registrarError("eliminarArticulo()", error.Message);
+            }
+            finally{
+              respuesta = true;
+            }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarSucursal(SUCURSAL _sucursal)
+        public static Task<bool> editarArticulo(ARTICULO _articulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.SUCURSAL.Remove(_sucursal);
-            }
+                bool respuesta = false;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarSucursal(SUCURSAL _sucursal)
+        public static Task<int> insertarSucursal(SUCURSAL _sucursal)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.SUCURSAL.Add(_sucursal);
+                        Contexto.SaveChanges();
+                    }
+
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarSucursal()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _sucursal.ID_SUCURSAL;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarCaja(CAJA _caja)
+        public static Task<bool> eliminarSucursal(SUCURSAL _sucursal)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.CAJA.Add(_caja);
-                Contexto.SaveChanges();
-            }
+                bool respuesta = false;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.SUCURSAL.Remove(_sucursal);
+                    }
+
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarSucursal()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarCaja(CAJA _caja)
+        public static Task<bool> editarSucursal(SUCURSAL _sucursal)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.CAJA.Remove(_caja);
-            }
+                bool respuesta = false;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarSucursal()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarCaja(CAJA _caja)
+        public static Task<int> insertarCaja(CAJA _caja)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.CAJA.Add(_caja);
+                        Contexto.SaveChanges();
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarCaja()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _caja.ID_CAJA;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarAlmacen(ALMACEN _almacen)
+        public static Task<bool> eliminarCaja(CAJA _caja)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.ALMACEN.Add(_almacen);
-                Contexto.SaveChanges();
-            }
+                bool respuesta = false;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.CAJA.Remove(_caja);
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarCaja()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarAlmacen(ALMACEN _alamacen)
+        public static Task<bool> editarCaja(CAJA _caja)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.ALMACEN.Remove(_alamacen);
-            }
+                bool respuesta = false;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarCaja()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarAlmacen(ALMACEN _alamacen)
+        public static Task<int> insertarAlmacen(ALMACEN _almacen)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.ALMACEN.Add(_almacen);
+                        Contexto.SaveChanges();
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarAlmacen()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _almacen.ID_ALMACEN;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarCodigoArticulo(CODIGO_ARTICULO _codigoArticulo)
+        public static Task<bool> eliminarAlmacen(ALMACEN _alamacen)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.CODIGO_ARTICULO.Add(_codigoArticulo);
-                Contexto.SaveChanges();
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.ALMACEN.Remove(_alamacen);
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarAlmacen()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarCodigoArticulo(CODIGO_ARTICULO _codigoArticulo)
+        public static Task<bool> editarAlmacen(ALMACEN _alamacen)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.CODIGO_ARTICULO.Remove(_codigoArticulo);
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarAlmacen()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarCodigoArticulo(CODIGO_ARTICULO _codigoArticulo)
+        public static Task<int> insertarCodigoArticulo(CODIGO_ARTICULO _codigoArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.CODIGO_ARTICULO.Add(_codigoArticulo);
+                        Contexto.SaveChanges();
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarCodigoArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _codigoArticulo.ID_CODIGO_ARTICULO;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarEstatusArticulo(ESTATUS_ARTICULO _estatusArticulo)
+        public static Task<bool> eliminarCodigoArticulo(CODIGO_ARTICULO _codigoArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.ESTATUS_ARTICULO.Add(_estatusArticulo);
-                Contexto.SaveChanges();
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.CODIGO_ARTICULO.Remove(_codigoArticulo);
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarCodigoArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarEstatusArticulo(ESTATUS_ARTICULO _estatusArticulo)
+        public static Task<bool> editarCodigoArticulo(CODIGO_ARTICULO _codigoArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.ESTATUS_ARTICULO.Remove(_estatusArticulo);
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarCodigoArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarEstatusAritculo(ESTATUS_ARTICULO _estatusArticulo)
+        public static Task<int> insertarEstatusArticulo(ESTATUS_ARTICULO _estatusArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.ESTATUS_ARTICULO.Add(_estatusArticulo);
+                        Contexto.SaveChanges();
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarEstatusArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _estatusArticulo.ID_ESTATUS_ARTICULO;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarImpuestoArticulo(IMPUESTO_ARTICULO _impuestoArticulo)
+        public static Task<bool> eliminarEstatusArticulo(ESTATUS_ARTICULO _estatusArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.IMPUESTO_ARTICULO.Add(_impuestoArticulo);
-                Contexto.SaveChanges();
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.ESTATUS_ARTICULO.Remove(_estatusArticulo);
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarEstatusArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarImpuestoArticulo(IMPUESTO_ARTICULO _impuestoArticulo)
+        public static Task<bool> editarEstatusAritculo(ESTATUS_ARTICULO _estatusArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.IMPUESTO_ARTICULO.Remove(_impuestoArticulo);
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarEstatusAritculo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarImpuestoArticulo(IMPUESTO_ARTICULO _estatusArticulo)
+        public static Task<int> insertarImpuestoArticulo(IMPUESTO_ARTICULO _impuestoArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.IMPUESTO_ARTICULO.Add(_impuestoArticulo);
+                        Contexto.SaveChanges();
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarImpuestoArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _impuestoArticulo.ID_IMPUESTO_ARTICULO;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarOfertaClienteSucursal(OFERTA_CLIENTE_SUCURSAL _ofertaClienteSucursal)
+        public static Task<bool> eliminarImpuestoArticulo(IMPUESTO_ARTICULO _impuestoArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.OFERTA_CLIENTE_SUCURSAL.Add(_ofertaClienteSucursal);
-                Contexto.SaveChanges();
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.IMPUESTO_ARTICULO.Remove(_impuestoArticulo);
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarImpuestoArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarOfertaClienteSucursal(OFERTA_CLIENTE_SUCURSAL _ofertaClienteSucursal)
+        public static Task<bool> editarImpuestoArticulo(IMPUESTO_ARTICULO _estatusArticulo)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.OFERTA_CLIENTE_SUCURSAL.Remove(_ofertaClienteSucursal);
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarImpuestoArticulo()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarOfertaClienteSucursal(OFERTA_CLIENTE_SUCURSAL _ofertaClienteSucursal)
+        public static Task<int> insertarOfertaClienteSucursal(OFERTA_CLIENTE_SUCURSAL _ofertaClienteSucursal)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.OFERTA_CLIENTE_SUCURSAL.Add(_ofertaClienteSucursal);
+                        Contexto.SaveChanges();
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarOfertaClienteSucursal()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _ofertaClienteSucursal.ID_OFERTA_CLIENTE_SUCURSAL;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarPerfil(PERFIL _perfil)
+        public static Task<bool> eliminarOfertaClienteSucursal(OFERTA_CLIENTE_SUCURSAL _ofertaClienteSucursal)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.PERFIL.Add(_perfil);
-                Contexto.SaveChanges();
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.OFERTA_CLIENTE_SUCURSAL.Remove(_ofertaClienteSucursal);
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarOfertaClienteSucursal()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarPerfil(PERFIL _perfil)
+        public static Task<bool> editarOfertaClienteSucursal(OFERTA_CLIENTE_SUCURSAL _ofertaClienteSucursal)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.PERFIL.Remove(_perfil);
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarOfertaClienteSucursal()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarPerfil(PERFIL _ofertaClienteSucursal)
+        public static Task<int> insertarPerfil(PERFIL _perfil)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.PERFIL.Add(_perfil);
+                        Contexto.SaveChanges();
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarPerfil()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _perfil.ID_PERFIL;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void insertarUnidadMedida(UNIDAD_MEDIDA _unidadMedida)
+        public static Task<int> eliminarPerfil(PERFIL _perfil)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.UNIDAD_MEDIDA.Add(_unidadMedida);
-                Contexto.SaveChanges();
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.PERFIL.Remove(_perfil);
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("eliminarPerfil()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _perfil.ID_PERFIL;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void eliminarUnidadMedida(UNIDAD_MEDIDA _unidadMedida)
+        public static Task<bool> editarPerfil(PERFIL _perfil)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-                Contexto.UNIDAD_MEDIDA.Remove(_unidadMedida);
-            }
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarPerfil()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
-        public static void editarUnidadMedida(UNIDAD_MEDIDA _unidadMedida)
+        public static Task<int> insertarUnidadMedida(UNIDAD_MEDIDA _unidadMedida)
         {
-            using (var Contexto = new BD_VENTAEntities())
+            return Task.Run(() =>
             {
-            }
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.UNIDAD_MEDIDA.Add(_unidadMedida);
+                        Contexto.SaveChanges();
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarUnidadMedida()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _unidadMedida.ID_UNIDAD_MEDIDA;
+                }
+
+
+                return respuesta;
+            });
+        }
+
+        public static Task<bool> eliminarUnidadMedida(UNIDAD_MEDIDA _unidadMedida)
+        {
+            return Task.Run(() =>
+            {
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.UNIDAD_MEDIDA.Remove(_unidadMedida);
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarUnidadMedida()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
+        }
+
+        public static Task<bool> editarUnidadMedida(UNIDAD_MEDIDA _unidadMedida)
+        {
+            return Task.Run(() =>
+            {
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarUnidadMedida()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
         }
 
         public static void registrarError(string metodo, string descripcion)
