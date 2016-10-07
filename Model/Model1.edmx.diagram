@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="024c3d331a744d76bd3fc49cad117cf2" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_VENTAModel1.ALMACEN" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.ARTICULO" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.CAJA" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.CODIGO_ARTICULO" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.CUENTA" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.EMPLEADO" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.ESTATUS_ARTICULO" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.IMPUESTO_ARTICULO" Width="1.5" PointX="7.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.LINEA" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.OFERTA_CLIENTE_SUCURSAL" Width="1.5" PointX="5.25" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.PERFIL" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.SUCURSAL" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.UNIDAD_MEDIDA" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.VENTA_DETALLE" Width="1.5" PointX="7.5" PointY="21.75" IsExpanded="true" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_ALMACEN_SUCURSAL" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_ARTICULO_SUCURSAL" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_ARTICULO_UNIDAD_MEDIDA" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_CODIGO_ARTICULO_ARTICULO1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_ESTATUS_ARTICULO" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_IMPUESTO_ARTICULO_ARTICULO" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_LINEA" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_VENTA_DETALLE_ARTICULO" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_SUCURSAL" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_EMPLEADO_CUENTA" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_SUCURSAL_CUENTA" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_EMPLEADO_PERFIL" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_VENTAModel1.FK_TIPO_CLIENTE_SUCURSAL" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

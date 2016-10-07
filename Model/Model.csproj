@@ -52,87 +52,85 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ALMACEN.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ARTICULO.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CAJA.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CODIGO_ARTICULO.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CUENTA.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_CATALOGOS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EF_CATALOGOS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_CATALOGOS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF_CATALOGOS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EF_CATALOGOS.edmx</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EMPLEADO.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ESTATUS_ARTICULO.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="IMPUESTO_ARTICULO.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="LINEA.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="OFERTA_CLIENTE_SUCURSAL.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="PERFIL.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SUCURSAL.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="UNIDAD_MEDIDA.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="VENTA_DETALLE.cs">
-      <DependentUpon>EF_CATALOGOS.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="EF_CATALOGOS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EF_CATALOGOS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="EF_CATALOGOS.edmx.diagram">
-      <DependentUpon>EF_CATALOGOS.edmx</DependentUpon>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EF_CATALOGOS.Context.tt">
+    <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EF_CATALOGOS.edmx</DependentUpon>
-      <LastGenOutput>EF_CATALOGOS.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EF_CATALOGOS.tt">
+    <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EF_CATALOGOS.edmx</DependentUpon>
-      <LastGenOutput>EF_CATALOGOS.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -17,8 +17,8 @@ namespace Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SUCURSAL()
         {
-            this.ARTICULO = new HashSet<ARTICULO>();
             this.ALMACEN = new HashSet<ALMACEN>();
+            this.ARTICULO = new HashSet<ARTICULO>();
             this.CAJA = new HashSet<CAJA>();
             this.OFERTA_CLIENTE_SUCURSAL = new HashSet<OFERTA_CLIENTE_SUCURSAL>();
         }
@@ -40,9 +40,9 @@ namespace Model
         public int ID_USUARIO_ACTUALIZACION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ARTICULO> ARTICULO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ALMACEN> ALMACEN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ARTICULO> ARTICULO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CAJA> CAJA { get; set; }
         public virtual CUENTA CUENTA { get; set; }

@@ -25,19 +25,19 @@ namespace Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ALMACEN> ALMACEN { get; set; }
         public virtual DbSet<ARTICULO> ARTICULO { get; set; }
+        public virtual DbSet<CAJA> CAJA { get; set; }
         public virtual DbSet<CODIGO_ARTICULO> CODIGO_ARTICULO { get; set; }
+        public virtual DbSet<CUENTA> CUENTA { get; set; }
+        public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
         public virtual DbSet<ESTATUS_ARTICULO> ESTATUS_ARTICULO { get; set; }
         public virtual DbSet<IMPUESTO_ARTICULO> IMPUESTO_ARTICULO { get; set; }
         public virtual DbSet<LINEA> LINEA { get; set; }
+        public virtual DbSet<OFERTA_CLIENTE_SUCURSAL> OFERTA_CLIENTE_SUCURSAL { get; set; }
+        public virtual DbSet<PERFIL> PERFIL { get; set; }
         public virtual DbSet<SUCURSAL> SUCURSAL { get; set; }
         public virtual DbSet<UNIDAD_MEDIDA> UNIDAD_MEDIDA { get; set; }
         public virtual DbSet<VENTA_DETALLE> VENTA_DETALLE { get; set; }
-        public virtual DbSet<ALMACEN> ALMACEN { get; set; }
-        public virtual DbSet<CAJA> CAJA { get; set; }
-        public virtual DbSet<CUENTA> CUENTA { get; set; }
-        public virtual DbSet<OFERTA_CLIENTE_SUCURSAL> OFERTA_CLIENTE_SUCURSAL { get; set; }
-        public virtual DbSet<PERFIL> PERFIL { get; set; }
-        public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
     }
 }

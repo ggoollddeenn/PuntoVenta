@@ -9,10 +9,10 @@ namespace View.ViewModel
     public class DataManager
     {
 
-        public static Task<int> login(string usuario, string contrasena)
+        public static int login(string usuario, string contrasena)
         {
-            return Task.Run(() =>
-            {
+            //return Task.Run(() =>
+            //{
                 int respuesta = 0;
                 try
                 {
@@ -32,7 +32,7 @@ namespace View.ViewModel
                     registrarError("login()", error.Message);
                 }
                 return respuesta;
-            });
+            //});
         }
 
         public static Task<int> insertarLinea(LINEA _linea) {
