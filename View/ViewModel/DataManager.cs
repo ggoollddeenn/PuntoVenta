@@ -943,6 +943,167 @@ namespace View.ViewModel
             });
         }
 
+        public static Task<int> insertarCuenta(CUENTA _cuenta)
+        {
+            return Task.Run(() =>
+            {
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.CUENTA.Add(_cuenta);
+                        Contexto.SaveChanges();
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarCuenata()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _cuenta.ID_CUENTA;
+                }
+
+
+                return respuesta;
+            });
+        }
+
+        public static Task<bool> eliminarCuenta(CUENTA _cuenta)
+        {
+            return Task.Run(() =>
+            {
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.CUENTA.Remove(_cuenta);
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarCuenta()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
+        }
+
+        public static Task<bool> editarCuenta(CUENTA _cuenta)
+        {
+            return Task.Run(() =>
+            {
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarUnidadCuenta()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
+        }
+
+        public static Task<int> insertarVentaDetalle(VENTA_DETALLE _ventaDetalle)
+        {
+            return Task.Run(() =>
+            {
+                int respuesta = 0;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.VENTA_DETALLE.Add(_ventaDetalle);
+                        Contexto.SaveChanges();
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = 0;
+                    registrarError("insertarVentaDetalle()", error.Message);
+                }
+                finally
+                {
+                    respuesta = _ventaDetalle.ID_VENTA_DETALLE;
+                }
+
+
+                return respuesta;
+            });
+        }
+
+        public static Task<bool> eliminarVentaDetalle(VENTA_DETALLE _ventaDetalle)
+        {
+            return Task.Run(() =>
+            {
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        Contexto.VENTA_DETALLE.Remove(_ventaDetalle);
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("eliminarVentaDetalle()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
+        }
+
+        public static Task<bool> editarVentaDetalle(VENTA_DETALLE _ventaDetalle)
+        {
+            return Task.Run(() =>
+            {
+                bool respuesta = false;
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                    }
+                }
+                catch (Exception error)
+                {
+                    respuesta = false;
+                    registrarError("editarVentaDetalle()", error.Message);
+                }
+                finally
+                {
+                    respuesta = true;
+                }
+
+
+                return respuesta;
+            });
+        }
         public static void registrarError(string metodo, string descripcion)
         {
 

@@ -95,6 +95,7 @@
     <Compile Include="ViewModel\ArticuloViewModel.cs" />
     <Compile Include="ViewModel\CajaViewModel.cs" />
     <Compile Include="ViewModel\CodigoArticuloViewModel.cs" />
+    <Compile Include="ViewModel\CuentaViewModel.cs" />
     <Compile Include="ViewModel\DataManager.cs" />
     <Compile Include="ViewModel\EmpleadoViewModel.cs" />
     <Compile Include="ViewModel\EstatusArticuloViewModel.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\SucursalViewModel.cs" />
     <Compile Include="ViewModel\UnidadMedidaViewModel.cs" />
+    <Compile Include="ViewModel\VentaDetalleViewModel.cs" />
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
