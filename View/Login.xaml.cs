@@ -40,6 +40,9 @@ namespace View
                 controller.SetMessage("Bienvenido");
                 WaitSeconds(2);
                 controller.CloseAsync();
+                MainWindow principal = new MainWindow();
+                
+                principal.ShowDialog();
             }
             else {
                 controller.SetMessage("Contraseña incorrecta");

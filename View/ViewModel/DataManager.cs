@@ -8,6 +8,9 @@ namespace View.ViewModel
 {
     public class DataManager
     {
+        public static Task<EmpleadoViewModel> GetEmpleado(int id) {
+
+        }
 
         public static Task<int> login(string usuario, string contrasena)
         {
