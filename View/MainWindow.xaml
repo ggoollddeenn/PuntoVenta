@@ -9,5 +9,11 @@
         Title="MainWindow" Height="230.789" Width="551.316">
     <Grid>
         
+            <Controls:FlyoutsControl>
+                <Controls:Flyout Header="Flyout" Position="Left"  Width="200">
+                    <!-- Your custom content here -->
+                </Controls:Flyout>
+            </Controls:FlyoutsControl>
+        
     </Grid>
 </Controls:MetroWindow>

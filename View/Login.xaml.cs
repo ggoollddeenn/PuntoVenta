@@ -33,15 +33,14 @@ namespace View
             
             var controller = await metroWindow.ShowProgressAsync("Please wait", "Connecting to the database...");
             int respuesta = await DataManager.login(txtUsuario.Text, txtContrasena.Password);
-            //int respuesta = DataManager.login(txtUsuario.Text, txtContrasena.Password);
             if (respuesta != 0)
-            {
+            { 
 
                 controller.SetMessage("Bienvenido");
                 WaitSeconds(2);
                 controller.CloseAsync();
                 MainWindow principal = new MainWindow();
-                
+                principal.DataContext = DataManager.GetEmpleado(respuesta);
                 principal.ShowDialog();
             }
             else {

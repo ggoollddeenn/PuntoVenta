@@ -9,8 +9,29 @@ namespace View.ViewModel
     public class DataManager
     {
         public static Task<EmpleadoViewModel> GetEmpleado(int id) {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    using (var Contexto = new BD_VENTAEntities())
+                    {
+                        var empleado = (from e in Contexto.EMPLEADO
+                                        where e.ID_EMPLEADO == id
+                                        select e).FirstOrDefault();
 
-        }
+                        EmpleadoViewModel evm = new EmpleadoViewModel();
+                        evm.Model = empleado;
+                        return evm;
+                    }
+                }
+                catch (Exception error)
+                {
+                    registrarError("GetEmpleado()", error.Message);
+                    return null;
+                }
+                 
+            });
+         }
 
         public static Task<int> login(string usuario, string contrasena)
         {

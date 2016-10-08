@@ -9,8 +9,9 @@ namespace View.ViewModel
 {
     public class EmpleadoViewModel : INotifyPropertyChanged
     {
-        EMPLEADO Model;
+        public EMPLEADO Model;
         public EmpleadoViewModel() {
+             
         }
 
         #region  Propiedades Model
