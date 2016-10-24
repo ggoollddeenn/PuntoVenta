@@ -23,6 +23,7 @@ namespace Model.Utilerias.Menu
 
         public int idItem { get; set; }
         public String descripcion { get; set; }
+        public String icono { get; set; }
         public List<Item> hijos { get; set; }
 
         #endregion

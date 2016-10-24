@@ -10,10 +10,13 @@
     <Grid>
         
             <Controls:FlyoutsControl>
-                <Controls:Flyout Header="Flyout" Position="Left"  Width="200">
+                <Controls:Flyout IsOpen="True" Name="menuFly" Header="Flyout" Position="Left"  Width="200">
                     <!-- Your custom content here -->
-                </Controls:Flyout>
+                <StackPanel Name ="mainStack"  Margin="1,1,1,1">
+
+                </StackPanel>
+            </Controls:Flyout>
             </Controls:FlyoutsControl>
-        
+ 
     </Grid>
 </Controls:MetroWindow>

@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using MahApps.Metro.Controls;
 using System.Drawing;
 using System.Windows.Shapes;
 using System.Windows.Input;
@@ -9,48 +8,26 @@ using System;
 using System.Windows.Media.Animation;
 using System.Collections.Generic;
 using Model.Utilerias.Menu;
-namespace View
-{
-    /// <summary>
-    /// Interaction logic for MenuControl.xaml
-    /// </summary>
-    public partial class MenuControl : MetroWindow
-    {
-        public MenuControl()
-        {
 
-            InitializeComponent();
-            loadMenu();
+namespace Model.Utilerias.Menu
+{
+   
+    public class UIMenu
+    {
+        public UIMenu(StackPanel _mainStack)
+        {
+            mainStack = _mainStack;
         }
+        private StackPanel mainStack;
 
         private static int ALTURA_HEADER = 40;
         private static int ALTURA_ITEM = 26;
-        private Item menuVentas(String titulo,String icono)
+       
+
+        public List<StackPanel> loadMenu(List<Item> main)
         {
 
-            Item item = new Item(titulo,1);
-            item.icono = icono;
-            List<Item> menuHijos = new List<Item>();
-            Item itemHijos = null;
-            item.hijos = new List<Item>();
-            for (int i=0; i<3; i++)
-            {
-                itemHijos = new Item(titulo + i,1);
-                
-                item.hijos.Add(itemHijos);
-            }
-
-            return item;
-        }
-
-        private void loadMenu()
-        {
-
-            List<Item> main = new List<Item>();
-            main.Add(menuVentas("Ventas","appbar_box"));
-            main.Add(menuVentas("Pedidos","appbar_brick"));
-            main.Add(menuVentas("Inventario","appbar_billing"));
-            main.Add(menuVentas("Catalogos","appbar_bing"));
+            
             StackPanel panelHeader = null;
             int i = 5;
             List<StackPanel> listaAnimada = new List<StackPanel>();
@@ -62,13 +39,13 @@ namespace View
             {
                 panelHeader = new StackPanel();
                 panelHeader.Name = "panel" + i;
-                panelHeader.Height = ALTURA_HEADER+1;
+                panelHeader.Height = ALTURA_HEADER + 1;
 
-                RegisterName(panelHeader.Name, panelHeader);
+                //RegisterName(panelHeader.Name, panelHeader);
 
                 stackPanelHeader = new StackPanel();
                 labelTitulo = new Label();
-              
+
                 labelTitulo.HorizontalContentAlignment = HorizontalAlignment.Center;
                 labelTitulo.VerticalContentAlignment = VerticalAlignment.Center;
                 labelTitulo.Content = itm.descripcion;
@@ -80,7 +57,7 @@ namespace View
                 rectangle.Fill = new SolidColorBrush(Color.FromRgb(217, 217, 217));
                 rectangle.Height = 1;
                 labelTitulo.Background = new SolidColorBrush(Color.FromRgb(113, 177, 209));
-                
+
 
 
                 stackPanelHeader.Orientation = Orientation.Horizontal;
@@ -90,7 +67,7 @@ namespace View
 
                 labelEpand = labelIcon("appbar_chevron_right");
 
-                
+
 
                 stackPanelHeader.Children.Add(labelIcon(itm.icono));
                 stackPanelHeader.Children.Add(labelTitulo);
@@ -133,10 +110,12 @@ namespace View
                 mainStack.Children.Add(itm);
             }
 
-            
 
+            return listaAnimada;
 
         }
+
+      
 
         private Label labelIcon(string icono)
         {
@@ -161,7 +140,7 @@ namespace View
             return labelIcon;
         }
 
-        private DoubleAnimation getAnimation(String name,double altura)
+        private DoubleAnimation getAnimation(String name, double altura)
         {
             DoubleAnimation myDoubleAnimation = null;
             myDoubleAnimation = new DoubleAnimation();
@@ -169,7 +148,7 @@ namespace View
             myDoubleAnimation.AccelerationRatio = 0.6;
             myDoubleAnimation.DecelerationRatio = 0.4;
             myDoubleAnimation.To = altura;
-            Storyboard.SetTargetName(myDoubleAnimation,name);
+            Storyboard.SetTargetName(myDoubleAnimation, name);
             Storyboard.SetTargetProperty(myDoubleAnimation, new PropertyPath(StackPanel.HeightProperty));
             return myDoubleAnimation;
         }
@@ -180,15 +159,15 @@ namespace View
             Rectangle rectangle1 = null;
             foreach (Item itm in item.hijos)
             {
-                
+
                 if (itm.hijos != null)
                 {
                     panelHijos(item, stackPanel);
                 }
                 else
                 {
-                    subItemUno  = new Label();
-                    
+                    subItemUno = new Label();
+
                     subItemUno.MouseLeftButtonDown += delegate { eventoClick(subItemUno); };
                     subItemUno.Content = itm.descripcion;
                     subItemUno.HorizontalContentAlignment = HorizontalAlignment.Center;
@@ -212,7 +191,7 @@ namespace View
         {
             Rectangle rectangleIcon = null;
 
-            
+
             var auxStak = ((StackPanel)sender).Children[0];
             double altura = ((StackPanel)sender).Height;
             if (altura == ALTURA_HEADER + 1)
@@ -231,11 +210,11 @@ namespace View
 
 
             StackPanel stackAux = null;
-             foreach (StackPanel itm in mainStack.Children)
-             {
+            foreach (StackPanel itm in mainStack.Children)
+            {
                 stackAux = (StackPanel)itm.Children[0];
 
-               
+
                 if (!((StackPanel)sender).Name.Equals(itm.Name))
                 {
                     rectangleIcon = new Rectangle();
@@ -248,23 +227,14 @@ namespace View
                         Stretch = Stretch.Uniform,
                     };
 
-                ((Label)(stackAux).Children[2]).Content = rectangleIcon;
-                   
+                    ((Label)(stackAux).Children[2]).Content = rectangleIcon;
+
                 }
             }
 
-            
+
         }
-
-               
-            
-
-        private void MenuItem1_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Hello World");
-        }
-
-
     }
+
 
 }
