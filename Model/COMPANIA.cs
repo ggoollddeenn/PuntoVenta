@@ -12,28 +12,33 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class EMPLEADO
+    public partial class COMPANIA
     {
-        public int ID_EMPLEADO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public COMPANIA()
+        {
+            this.SUCURSAL = new HashSet<SUCURSAL>();
+        }
+    
+        public int ID_COMPANIA { get; set; }
         public int ID_CUENTA { get; set; }
-        public int ID_PERFIL { get; set; }
-        public string USUARIO { get; set; }
-        public string CONTRASENA { get; set; }
-        public string NOMBRE { get; set; }
-        public string APELLIDO_PATERNO { get; set; }
-        public string APELLIDO_MATERNO { get; set; }
+        public int ID_ESTADO_PAIS { get; set; }
+        public string RAZON_SOCIAL { get; set; }
         public string RFC { get; set; }
         public string TELEFONO_FIJO { get; set; }
         public string CELULAR { get; set; }
-        public string DIRECCION { get; set; }
-        public System.DateTime FECHA_CREACION { get; set; }
+        public string CALLE { get; set; }
+        public string NO_EXTERIRO { get; set; }
+        public string NO_INTERIOR { get; set; }
+        public string COLONIA { get; set; }
+        public string CODIGO_POSTAL { get; set; }
+        public System.DateTime FECHA_CRACION { get; set; }
         public int ID_USUARIO_CREACION { get; set; }
         public System.DateTime FECHA_ACTUALIZACION { get; set; }
         public int ID_USUARIO_ACTUALIZACION { get; set; }
-        public Nullable<int> ID_SUCURSAL { get; set; }
     
         public virtual CUENTA CUENTA { get; set; }
-        public virtual PERFIL PERFIL { get; set; }
-        public virtual SUCURSAL SUCURSAL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SUCURSAL> SUCURSAL { get; set; }
     }
 }

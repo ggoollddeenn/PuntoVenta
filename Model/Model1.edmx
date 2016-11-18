@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_VENTAModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BD_VENTAModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ALMACEN">
           <Key>
             <PropertyRef Name="ID_ALMACEN" />
@@ -58,6 +58,27 @@
           <Property Name="CODIGO" Type="varchar" MaxLength="50" />
           <Property Name="PRINCIPAL" Type="bit" />
         </EntityType>
+        <EntityType Name="COMPANIA">
+          <Key>
+            <PropertyRef Name="ID_COMPANIA" />
+          </Key>
+          <Property Name="ID_COMPANIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CUENTA" Type="int" Nullable="false" />
+          <Property Name="ID_ESTADO_PAIS" Type="int" Nullable="false" />
+          <Property Name="RAZON_SOCIAL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RFC" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="TELEFONO_FIJO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CELULAR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CALLE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NO_EXTERIRO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NO_INTERIOR" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="COLONIA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CODIGO_POSTAL" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="FECHA_CRACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CUENTA">
           <Key>
             <PropertyRef Name="ID_CUENTA" />
@@ -99,6 +120,7 @@
           <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
           <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+          <Property Name="ID_SUCURSAL" Type="int" />
         </EntityType>
         <EntityType Name="ESTATUS_ARTICULO">
           <Key>
@@ -166,6 +188,7 @@
           <Property Name="ID_USUARIO_CREACION" Type="int" Nullable="false" />
           <Property Name="FECHA_ACTUALIZACION" Type="datetime" Nullable="false" />
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="int" Nullable="false" />
+          <Property Name="ID_COMPANIA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UNIDAD_MEDIDA">
           <Key>
@@ -191,6 +214,42 @@
           <Property Name="TOTAL" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ID_OFERTA_CLIENTE" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__COMPANIA__ID_CUE__17F790F9">
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="1" />
+          <End Role="COMPANIA" Type="Self.COMPANIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="COMPANIA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMPLEADO__ID_SUC__1AD3FDA4">
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="0..1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUCURSAL__ID_COM__19DFD96B">
+          <End Role="COMPANIA" Type="Self.COMPANIA" Multiplicity="1" />
+          <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANIA">
+              <PropertyRef Name="ID_COMPANIA" />
+            </Principal>
+            <Dependent Role="SUCURSAL">
+              <PropertyRef Name="ID_COMPANIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ALMACEN_SUCURSAL">
           <End Role="SUCURSAL" Type="Self.SUCURSAL" Multiplicity="0..1" />
           <End Role="ALMACEN" Type="Self.ALMACEN" Multiplicity="*" />
@@ -352,6 +411,7 @@
           <EntitySet Name="ARTICULO" EntityType="Self.ARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CAJA" EntityType="Self.CAJA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CODIGO_ARTICULO" EntityType="Self.CODIGO_ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANIA" EntityType="Self.COMPANIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUENTA" EntityType="Self.CUENTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTATUS_ARTICULO" EntityType="Self.ESTATUS_ARTICULO" Schema="dbo" store:Type="Tables" />
@@ -362,6 +422,18 @@
           <EntitySet Name="SUCURSAL" EntityType="Self.SUCURSAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIDAD_MEDIDA" EntityType="Self.UNIDAD_MEDIDA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VENTA_DETALLE" EntityType="Self.VENTA_DETALLE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__COMPANIA__ID_CUE__17F790F9" Association="Self.FK__COMPANIA__ID_CUE__17F790F9">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="COMPANIA" EntitySet="COMPANIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMPLEADO__ID_SUC__1AD3FDA4" Association="Self.FK__EMPLEADO__ID_SUC__1AD3FDA4">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUCURSAL__ID_COM__19DFD96B" Association="Self.FK__SUCURSAL__ID_COM__19DFD96B">
+            <End Role="COMPANIA" EntitySet="COMPANIA" />
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+          </AssociationSet>
           <AssociationSet Name="FK_ALMACEN_SUCURSAL" Association="Self.FK_ALMACEN_SUCURSAL">
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
             <End Role="ALMACEN" EntitySet="ALMACEN" />
@@ -415,8 +487,7 @@
             <End Role="VENTA_DETALLE" EntitySet="VENTA_DETALLE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_VENTAModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -505,6 +576,7 @@
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" />
           <NavigationProperty Name="EMPLEADO" Relationship="Self.FK_EMPLEADO_CUENTA" FromRole="CUENTA" ToRole="EMPLEADO" />
           <NavigationProperty Name="SUCURSAL" Relationship="Self.FK_SUCURSAL_CUENTA" FromRole="CUENTA" ToRole="SUCURSAL" />
+          <NavigationProperty Name="COMPANIA" Relationship="BD_VENTAModel1.FK__COMPANIA__ID_CUE__17F790F9" FromRole="CUENTA" ToRole="COMPANIA" />
         </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
@@ -528,6 +600,8 @@
           <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CUENTA" Relationship="Self.FK_EMPLEADO_CUENTA" FromRole="EMPLEADO" ToRole="CUENTA" />
           <NavigationProperty Name="PERFIL" Relationship="Self.FK_EMPLEADO_PERFIL" FromRole="EMPLEADO" ToRole="PERFIL" />
+          <Property Name="ID_SUCURSAL" Type="Int32" />
+          <NavigationProperty Name="SUCURSAL" Relationship="BD_VENTAModel1.FK__EMPLEADO__ID_SUC__1AD3FDA4" FromRole="EMPLEADO" ToRole="SUCURSAL" />
         </EntityType>
         <EntityType Name="ESTATUS_ARTICULO">
           <Key>
@@ -605,6 +679,9 @@
           <NavigationProperty Name="CAJA" Relationship="Self.FK_SUCURSAL" FromRole="SUCURSAL" ToRole="CAJA" />
           <NavigationProperty Name="CUENTA" Relationship="Self.FK_SUCURSAL_CUENTA" FromRole="SUCURSAL" ToRole="CUENTA" />
           <NavigationProperty Name="OFERTA_CLIENTE_SUCURSAL" Relationship="Self.FK_TIPO_CLIENTE_SUCURSAL" FromRole="SUCURSAL" ToRole="OFERTA_CLIENTE_SUCURSAL" />
+          <Property Name="ID_COMPANIA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="COMPANIA" Relationship="BD_VENTAModel1.FK__SUCURSAL__ID_COM__19DFD96B" FromRole="SUCURSAL" ToRole="COMPANIA" />
+          <NavigationProperty Name="EMPLEADO" Relationship="BD_VENTAModel1.FK__EMPLEADO__ID_SUC__1AD3FDA4" FromRole="SUCURSAL" ToRole="EMPLEADO" />
         </EntityType>
         <EntityType Name="UNIDAD_MEDIDA">
           <Key>
@@ -855,7 +932,79 @@
             <End Role="SUCURSAL" EntitySet="SUCURSAL" />
             <End Role="OFERTA_CLIENTE_SUCURSAL" EntitySet="OFERTA_CLIENTE_SUCURSAL" />
           </AssociationSet>
+          <EntitySet Name="COMPANIA" EntityType="BD_VENTAModel1.COMPANIA" />
+          <AssociationSet Name="FK__COMPANIA__ID_CUE__17F790F9" Association="BD_VENTAModel1.FK__COMPANIA__ID_CUE__17F790F9">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="COMPANIA" EntitySet="COMPANIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SUCURSAL__ID_COM__19DFD96B" Association="BD_VENTAModel1.FK__SUCURSAL__ID_COM__19DFD96B">
+            <End Role="COMPANIA" EntitySet="COMPANIA" />
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMPLEADO__ID_SUC__1AD3FDA4" Association="BD_VENTAModel1.FK__EMPLEADO__ID_SUC__1AD3FDA4">
+            <End Role="SUCURSAL" EntitySet="SUCURSAL" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="COMPANIA">
+          <Key>
+            <PropertyRef Name="ID_COMPANIA" />
+          </Key>
+          <Property Name="ID_COMPANIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CUENTA" Type="Int32" Nullable="false" />
+          <Property Name="ID_ESTADO_PAIS" Type="Int32" Nullable="false" />
+          <Property Name="RAZON_SOCIAL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO_FIJO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CELULAR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CALLE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NO_EXTERIRO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NO_INTERIOR" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="COLONIA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_POSTAL" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CRACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_CREACION" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO_ACTUALIZACION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CUENTA" Relationship="BD_VENTAModel1.FK__COMPANIA__ID_CUE__17F790F9" FromRole="COMPANIA" ToRole="CUENTA" />
+          <NavigationProperty Name="SUCURSAL" Relationship="BD_VENTAModel1.FK__SUCURSAL__ID_COM__19DFD96B" FromRole="COMPANIA" ToRole="SUCURSAL" />
+        </EntityType>
+        <Association Name="FK__COMPANIA__ID_CUE__17F790F9">
+          <End Type="BD_VENTAModel1.CUENTA" Role="CUENTA" Multiplicity="1" />
+          <End Type="BD_VENTAModel1.COMPANIA" Role="COMPANIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="COMPANIA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SUCURSAL__ID_COM__19DFD96B">
+          <End Type="BD_VENTAModel1.COMPANIA" Role="COMPANIA" Multiplicity="1" />
+          <End Type="BD_VENTAModel1.SUCURSAL" Role="SUCURSAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANIA">
+              <PropertyRef Name="ID_COMPANIA" />
+            </Principal>
+            <Dependent Role="SUCURSAL">
+              <PropertyRef Name="ID_COMPANIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMPLEADO__ID_SUC__1AD3FDA4">
+          <End Type="BD_VENTAModel1.SUCURSAL" Role="SUCURSAL" Multiplicity="0..1" />
+          <End Type="BD_VENTAModel1.EMPLEADO" Role="EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUCURSAL">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="ID_SUCURSAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -944,6 +1093,7 @@
           <EntitySetMapping Name="EMPLEADO">
             <EntityTypeMapping TypeName="BD_VENTAModel1.EMPLEADO">
               <MappingFragment StoreEntitySet="EMPLEADO">
+                <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
                 <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
@@ -1018,6 +1168,7 @@
           <EntitySetMapping Name="SUCURSAL">
             <EntityTypeMapping TypeName="BD_VENTAModel1.SUCURSAL">
               <MappingFragment StoreEntitySet="SUCURSAL">
+                <ScalarProperty Name="ID_COMPANIA" ColumnName="ID_COMPANIA" />
                 <ScalarProperty Name="ID_SUCURSAL" ColumnName="ID_SUCURSAL" />
                 <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
@@ -1059,6 +1210,28 @@
                 <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
                 <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
                 <ScalarProperty Name="ID_OFERTA_CLIENTE" ColumnName="ID_OFERTA_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANIA">
+            <EntityTypeMapping TypeName="BD_VENTAModel1.COMPANIA">
+              <MappingFragment StoreEntitySet="COMPANIA">
+                <ScalarProperty Name="ID_USUARIO_ACTUALIZACION" ColumnName="ID_USUARIO_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="ID_USUARIO_CREACION" ColumnName="ID_USUARIO_CREACION" />
+                <ScalarProperty Name="FECHA_CRACION" ColumnName="FECHA_CRACION" />
+                <ScalarProperty Name="CODIGO_POSTAL" ColumnName="CODIGO_POSTAL" />
+                <ScalarProperty Name="COLONIA" ColumnName="COLONIA" />
+                <ScalarProperty Name="NO_INTERIOR" ColumnName="NO_INTERIOR" />
+                <ScalarProperty Name="NO_EXTERIRO" ColumnName="NO_EXTERIRO" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="TELEFONO_FIJO" ColumnName="TELEFONO_FIJO" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="ID_ESTADO_PAIS" ColumnName="ID_ESTADO_PAIS" />
+                <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+                <ScalarProperty Name="ID_COMPANIA" ColumnName="ID_COMPANIA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

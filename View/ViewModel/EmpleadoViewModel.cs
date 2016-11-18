@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using System.Windows.Input;
 namespace View.ViewModel
 {
     public class EmpleadoViewModel : INotifyPropertyChanged
@@ -13,7 +14,58 @@ namespace View.ViewModel
         public EmpleadoViewModel() {
              
         }
+        void NotifyChange(params string[] ids)
+        {
+            if (PropertyChanged != null)
+                foreach (var id in ids)
+                    PropertyChanged(this, new PropertyChangedEventArgs(id));
+        }
+        #region Commandos
+        ICommand Insertar
+        {
+            get
+            {
+                return new RelayCommand(o => insertar());
+            }
+        }
 
+        ICommand Eliminar
+        {
+            get
+            {
+                return new RelayCommand(o => eliminar());
+            }
+        }
+
+        ICommand Editar
+        {
+            get
+            {
+                return new RelayCommand(o => editar());
+            }
+        }
+        #endregion
+        #region Métodos
+        void insertar()
+        {
+
+            DataManager.insertarEmpleado(Model);
+        }
+
+        void editar()
+        {
+            DataManager.editarEmpleado(Model);
+        }
+        void eliminar()
+        {
+            DataManager.eliminarEmpleado(Model);
+        }
+        #endregion
+
+ 
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
         #region  Propiedades Model
         public int ID_EMPLEADO {
             get {
@@ -97,15 +149,15 @@ namespace View.ViewModel
 
         
 
-        void NotifyChange(params string[] ids)
-        {
-            if (PropertyChanged != null)
-                foreach (var id in ids)
-                    PropertyChanged(this, new PropertyChangedEventArgs(id));
-        }
+        //void NotifyChange(params string[] ids)
+        //{
+        //    if (PropertyChanged != null)
+        //        foreach (var id in ids)
+        //            PropertyChanged(this, new PropertyChangedEventArgs(id));
+        //}
 
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
+       // #region INotifyPropertyChanged Members
+       // public event PropertyChangedEventHandler PropertyChanged;
+       // #endregion
     }
 }

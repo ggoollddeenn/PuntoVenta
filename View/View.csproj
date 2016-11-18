@@ -98,6 +98,7 @@
     <Compile Include="ViewModel\ArticuloViewModel.cs" />
     <Compile Include="ViewModel\CajaViewModel.cs" />
     <Compile Include="ViewModel\CodigoArticuloViewModel.cs" />
+    <Compile Include="ViewModel\CompaniaViewModel.cs" />
     <Compile Include="ViewModel\CuentaViewModel.cs" />
     <Compile Include="ViewModel\DataManager.cs" />
     <Compile Include="ViewModel\EmpleadoViewModel.cs" />

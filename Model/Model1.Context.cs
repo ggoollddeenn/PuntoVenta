@@ -39,5 +39,6 @@ namespace Model
         public virtual DbSet<SUCURSAL> SUCURSAL { get; set; }
         public virtual DbSet<UNIDAD_MEDIDA> UNIDAD_MEDIDA { get; set; }
         public virtual DbSet<VENTA_DETALLE> VENTA_DETALLE { get; set; }
+        public virtual DbSet<COMPANIA> COMPANIA { get; set; }
     }
 }
