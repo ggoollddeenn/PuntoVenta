@@ -27,8 +27,6 @@ namespace View.ViewModel
             DataManager.eliminarEmpleado(Model);
         }
         
-
- 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -112,8 +110,6 @@ namespace View.ViewModel
             set { Model.PERFIL = value; NotifyChange("PERFIL"); }
         }
         #endregion
-
-
 
         void NotifyChange(params string[] ids)
         {

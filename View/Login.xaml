@@ -6,19 +6,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="300">
+        Title="Login" Height="268.421" Width="477.067">
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Usuario:"></Label>
-                <TextBox Name="txtUsuario" ></TextBox>
+                <TextBox Name="txtUsuario" Width="130" ></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Contraseña:"></Label>
-                <PasswordBox Name="txtContrasena" ></PasswordBox>
-                <StackPanel>
-                    <Button Name="btnIniciarSession" Click="btnIniciarSession_Click"></Button>
-                </StackPanel>
+                <PasswordBox Name="txtContrasena" Width="103" ></PasswordBox>
+                <StackPanel/>
+            </StackPanel>
+            <StackPanel Height="100">
+                <Button x:Name="btnIniciarSession" Click="btnIniciarSession_Click" Content="Login" Margin="0,0,327,0"/>
             </StackPanel>
         </StackPanel>
 
