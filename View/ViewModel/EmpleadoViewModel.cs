@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using System.Collections.ObjectModel;
+
 namespace View.ViewModel
 {
     public class EmpleadoViewModel :INotifyPropertyChanged
@@ -24,7 +26,7 @@ namespace View.ViewModel
         {
             DataManager.eliminarEmpleado(Model);
         }
-        #endregion
+        
 
  
         #region INotifyPropertyChanged Members
@@ -111,17 +113,14 @@ namespace View.ViewModel
         }
         #endregion
 
-        
 
-        //void NotifyChange(params string[] ids)
-        //{
-        //    if (PropertyChanged != null)
-        //        foreach (var id in ids)
-        //            PropertyChanged(this, new PropertyChangedEventArgs(id));
-        //}
 
-       // #region INotifyPropertyChanged Members
-       // public event PropertyChangedEventHandler PropertyChanged;
-       // #endregion
+        void NotifyChange(params string[] ids)
+        {
+            if (PropertyChanged != null)
+                foreach (var id in ids)
+                    PropertyChanged(this, new PropertyChangedEventArgs(id));
+        }
+
     }
 }

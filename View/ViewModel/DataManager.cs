@@ -105,10 +105,6 @@ namespace View.ViewModel
                         obj.FECHA_ACTUALIZACION = DateTime.Now;
                         obj.ID_USUARIO_ACTUALIZACION = _compania.ID_USUARIO_ACTUALIZACION;
 
-                                                                    //obj.ID_COMPANIA = _compania.ID_COMPANIA;
-                                                //obj.ID_USUARIO_CREACION = _compania.ID_USUARIO_CREACION;  
-                        
-                        //obj.FECHA_CRACION
                         Contexto.SaveChanges();
                     }
                 }
@@ -295,7 +291,6 @@ namespace View.ViewModel
                 bool respuesta = false;
                 try
                 {
-                    /////////////////////////PREGUNTAR SI ESTAN BIEN LOS ID QUE PUSE..........
                     using (var Contexto = new BD_VENTAEntities())
                     {
                         ARTICULO obj = (from articulo in Contexto.ARTICULO
@@ -705,7 +700,6 @@ namespace View.ViewModel
                         CODIGO_ARTICULO obj = (from codigo_articulo in Contexto.CODIGO_ARTICULO
                                        where codigo_articulo.ID_CODIGO_ARTICULO == _codigoArticulo.ID_CODIGO_ARTICULO
                                        select codigo_articulo).First();
-                        obj.ID_ARTICULO = _codigoArticulo.ID_ARTICULO;
                         obj.CODIGO = _codigoArticulo.CODIGO;
                         obj.PRINCIPAL = _codigoArticulo.PRINCIPAL;
                         Contexto.SaveChanges();
@@ -1155,14 +1149,6 @@ namespace View.ViewModel
                         obj.NOMBRE = _unidadMedida.NOMBRE;
                         obj.FECHA_ACTUALIZACION = DateTime.Now;
                         obj.ID_USUARIO_ACTUZALICION = _unidadMedida.ID_USUARIO_ACTUZALICION;
-                        //
-                        //obj.FECHA_ACTUALIZACION = DateTime.Now;
-                        //obj.ID_USUARIO_ACTUALIZACION = _compania.ID_USUARIO_ACTUALIZACION;
-
-                        //obj.ID_COMPANIA = _compania.ID_COMPANIA;
-                        //obj.ID_USUARIO_CREACION = _compania.ID_USUARIO_CREACION;  
-
-                        //obj.FECHA_CRACION
                         Contexto.SaveChanges();
                     }
                 }
