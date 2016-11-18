@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="024c3d331a744d76bd3fc49cad117cf2" Name="Diagram1">
-        <EntityTypeShape EntityType="BD_VENTAModel1.ALMACEN" Width="1.5" PointX="5.625" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_VENTAModel1.ARTICULO" Width="1.5" PointX="5.625" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.ALMACEN" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.ARTICULO" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.CAJA" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_VENTAModel1.CODIGO_ARTICULO" Width="1.5" PointX="9.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.CODIGO_ARTICULO" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.CUENTA" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.EMPLEADO" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_VENTAModel1.ESTATUS_ARTICULO" Width="1.5" PointX="9" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.ESTATUS_ARTICULO" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.IMPUESTO_ARTICULO" Width="1.5" PointX="7.5" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.LINEA" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.OFERTA_CLIENTE_SUCURSAL" Width="1.5" PointX="5.25" PointY="29.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.PERFIL" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_VENTAModel1.SUCURSAL" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.SUCURSAL" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_VENTAModel1.UNIDAD_MEDIDA" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_VENTAModel1.VENTA_DETALLE" Width="1.5" PointX="9.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.VENTA_DETALLE" Width="1.5" PointX="7.5" PointY="21.75" IsExpanded="true" />
         <AssociationConnector Association="BD_VENTAModel1.FK_ALMACEN_SUCURSAL" ManuallyRouted="false" />
         <AssociationConnector Association="BD_VENTAModel1.FK_ARTICULO_SUCURSAL" ManuallyRouted="false" />
         <AssociationConnector Association="BD_VENTAModel1.FK_ARTICULO_UNIDAD_MEDIDA" ManuallyRouted="false" />
@@ -32,6 +32,10 @@
         <AssociationConnector Association="BD_VENTAModel1.FK_SUCURSAL_CUENTA" ManuallyRouted="false" />
         <AssociationConnector Association="BD_VENTAModel1.FK_EMPLEADO_PERFIL" ManuallyRouted="false" />
         <AssociationConnector Association="BD_VENTAModel1.FK_TIPO_CLIENTE_SUCURSAL" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BD_VENTAModel1.COMPANIA" Width="1.5" PointX="3" PointY="4.125" />
+        <AssociationConnector Association="BD_VENTAModel1.FK__COMPANIA__ID_CUE__17F790F9" />
+        <AssociationConnector Association="BD_VENTAModel1.FK__SUCURSAL__ID_COM__19DFD96B" />
+        <AssociationConnector Association="BD_VENTAModel1.FK__EMPLEADO__ID_SUC__1AD3FDA4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

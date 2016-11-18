@@ -21,6 +21,7 @@ namespace Model
             this.ARTICULO = new HashSet<ARTICULO>();
             this.CAJA = new HashSet<CAJA>();
             this.OFERTA_CLIENTE_SUCURSAL = new HashSet<OFERTA_CLIENTE_SUCURSAL>();
+            this.EMPLEADO = new HashSet<EMPLEADO>();
         }
     
         public int ID_SUCURSAL { get; set; }
@@ -38,6 +39,7 @@ namespace Model
         public int ID_USUARIO_CREACION { get; set; }
         public System.DateTime FECHA_ACTUALIZACION { get; set; }
         public int ID_USUARIO_ACTUALIZACION { get; set; }
+        public int ID_COMPANIA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ALMACEN> ALMACEN { get; set; }
@@ -48,5 +50,8 @@ namespace Model
         public virtual CUENTA CUENTA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OFERTA_CLIENTE_SUCURSAL> OFERTA_CLIENTE_SUCURSAL { get; set; }
+        public virtual COMPANIA COMPANIA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }
     }
 }

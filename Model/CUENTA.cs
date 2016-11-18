@@ -19,6 +19,7 @@ namespace Model
         {
             this.EMPLEADO = new HashSet<EMPLEADO>();
             this.SUCURSAL = new HashSet<SUCURSAL>();
+            this.COMPANIA = new HashSet<COMPANIA>();
         }
     
         public int ID_CUENTA { get; set; }
@@ -42,5 +43,7 @@ namespace Model
         public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUCURSAL> SUCURSAL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<COMPANIA> COMPANIA { get; set; }
     }
 }

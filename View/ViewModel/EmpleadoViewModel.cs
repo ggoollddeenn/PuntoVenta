@@ -5,9 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-
 namespace View.ViewModel
 {
     public class EmpleadoViewModel :INotifyPropertyChanged
@@ -19,22 +16,20 @@ namespace View.ViewModel
              
         }
 
-        #region comados
-        public ICommand AgregarProfucto
+        void editar()
         {
-            get
-            {
-                return new RelayCommand(param =>agregarProducto((string)param));
-            }
+            DataManager.editarEmpleado(Model);
         }
-
+        void eliminar()
+        {
+            DataManager.eliminarEmpleado(Model);
+        }
         #endregion
 
-        private void agregarProducto(String clave)
-        {
-           itemsVenta.Add(DataManager.getArticulo(clave));
-        }
-
+ 
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
         #region  Propiedades Model
         public int ID_EMPLEADO {
             get {
@@ -118,15 +113,15 @@ namespace View.ViewModel
 
         
 
-        void NotifyChange(params string[] ids)
-        {
-            if (PropertyChanged != null)
-                foreach (var id in ids)
-                    PropertyChanged(this, new PropertyChangedEventArgs(id));
-        }
+        //void NotifyChange(params string[] ids)
+        //{
+        //    if (PropertyChanged != null)
+        //        foreach (var id in ids)
+        //            PropertyChanged(this, new PropertyChangedEventArgs(id));
+        //}
 
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
+       // #region INotifyPropertyChanged Members
+       // public event PropertyChangedEventHandler PropertyChanged;
+       // #endregion
     }
 }
