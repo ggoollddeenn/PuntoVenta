@@ -12,11 +12,10 @@ namespace View.ViewModel
     public class VentaDetalleViewModel : INotifyPropertyChanged
     {
         VENTA_DETALLE Model;
-        EmpleadoViewModel _empleadoViewModel;
 
-        public VentaDetalleViewModel(EmpleadoViewModel empleado)
+        public VentaDetalleViewModel()
         {
-            _empleadoViewModel = empleado;
+         
         }
 
         #region Propiedades Model

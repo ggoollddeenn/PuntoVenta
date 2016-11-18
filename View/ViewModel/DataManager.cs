@@ -1128,6 +1128,19 @@ namespace View.ViewModel
                 return respuesta;
             });
         }
+
+        public static VentaDetalleViewModel getArticulo(String clave)
+        {
+            ARTICULO aritculo = new ARTICULO();
+            aritculo.DESCRIPCION = "asdasddsdas";
+            aritculo.NOMBRE = "dasds";
+
+            VentaDetalleViewModel regresar = new VentaDetalleViewModel();
+            regresar.ARTICULO = aritculo;
+
+            return regresar;
+
+        }
         public static void registrarError(string metodo, string descripcion)
         {
 

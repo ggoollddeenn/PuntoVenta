@@ -1,0 +1,23 @@
+﻿<Window x:Class="View.PuntoVenta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="PuntoVenta" Height="500" Width="600">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Codigo:"></Label>
+                <TextBox Text="addas" Width="200" Name="codigoField"
+                         KeyDown="keyDownField" ></TextBox>
+            </StackPanel>
+        <StackPanel>
+                <ListView HorizontalAlignment="Left" Height="400" Width="300"
+                          ItemsSource="{Binding itemsVenta}">
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -5,13 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+
 namespace View.ViewModel
 {
-    public class EmpleadoViewModel : INotifyPropertyChanged
+    public class EmpleadoViewModel :INotifyPropertyChanged
     {
+        public ObservableCollection<VentaDetalleViewModel> itemsVenta { get; set; }
+
         public EMPLEADO Model;
         public EmpleadoViewModel() {
              
+        }
+
+        #region comados
+        public ICommand AgregarProfucto
+        {
+            get
+            {
+                return new RelayCommand(param =>agregarProducto((string)param));
+            }
+        }
+
+        #endregion
+
+        private void agregarProducto(String clave)
+        {
+           itemsVenta.Add(DataManager.getArticulo(clave));
         }
 
         #region  Propiedades Model

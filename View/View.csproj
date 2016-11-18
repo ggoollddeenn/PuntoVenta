@@ -94,6 +94,10 @@
     <Compile Include="MenuControl.xaml.cs">
       <DependentUpon>MenuControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PuntoVenta.xaml.cs">
+      <DependentUpon>PuntoVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Servicios\N_PuntoDeVenta.cs" />
     <Compile Include="ViewModel\AlmacenViewModel.cs" />
     <Compile Include="ViewModel\ArticuloViewModel.cs" />
     <Compile Include="ViewModel\CajaViewModel.cs" />
@@ -127,6 +131,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PuntoVenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
